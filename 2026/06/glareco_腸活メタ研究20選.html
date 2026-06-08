@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腸活メタ研究 重要要素20選｜グラフィックレコーディング</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&family=Yomogi&family=Zen+Kurenaido&display=swap');
+
+:root{
+  --plum:#4A3540;        /* ベース濃色 */
+  --mauve:#7C5A68;       /* サブ */
+  --rose:#B0607A;        /* A 体重・くびれ */
+  --sage:#6E8B6A;        /* B 食物繊維（最強） */
+  --gold:#C49A4A;        /* C 発酵・多様性 */
+  --indigo:#6E6191;      /* D お通じ・代謝・全身 */
+  --alert:#C24A3D;       /* 警告 */
+  --cream:#FAF6F2;       /* 背景 */
+  --ink:#42343B;         /* 本文 */
+  --sub:#6B5B63;         /* サブテキスト */
+  --line:#E7DCD6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Yomogi','Zen Kurenaido',cursive,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  font-size:14px;line-height:1.7;
+  background-image:radial-gradient(rgba(124,90,104,0.05) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+.container{max-width:1200px;margin:0 auto;padding:24px;width:100%;}
+h1,h2,h3,h4{font-family:'Kaisei Decol',serif;}
+
+/* Header */
+.header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:30px 36px;margin-bottom:22px;
+  background:linear-gradient(135deg,#4A3540,#7C5A68 90%);
+  border-radius:18px;color:#fff;box-shadow:0 8px 24px rgba(74,53,64,.25);
+  position:relative;overflow:hidden;
+}
+.header::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+  background:radial-gradient(circle,rgba(196,154,74,.35),transparent 70%);border-radius:50%;}
+.header h1{font-size:30px;font-weight:700;letter-spacing:.5px;line-height:1.3;}
+.header h1 .accent{color:#F0D8A8;}
+.header .lead{font-size:13.5px;margin-top:8px;opacity:.92;font-family:'Zen Kurenaido';max-width:640px;}
+.header .meta{text-align:right;font-size:12px;opacity:.9;min-width:150px;font-family:'Zen Kurenaido';}
+.header .meta div{margin-bottom:4px;}
+
+/* Section band */
+.band{
+  display:flex;align-items:center;gap:12px;
+  margin:30px 0 16px;padding:12px 22px;border-radius:12px;color:#fff;
+  font-family:'Kaisei Decol';font-size:19px;font-weight:700;
+  box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+.band i{font-size:22px;}
+.band .tag{margin-left:auto;font-size:12px;font-weight:400;background:rgba(255,255,255,.22);
+  padding:3px 12px;border-radius:20px;font-family:'Zen Kurenaido';}
+.band-A{background:linear-gradient(100deg,#B0607A,#9A5069);}
+.band-B{background:linear-gradient(100deg,#6E8B6A,#577355);}
+.band-C{background:linear-gradient(100deg,#C49A4A,#AD8537);}
+.band-D{background:linear-gradient(100deg,#6E6191,#574B78);}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+
+/* Card */
+.card{
+  background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);
+  border-radius:14px;padding:18px 18px 16px;
+  box-shadow:0 3px 12px rgba(74,53,64,.08);
+  border-top:1px solid var(--line);position:relative;
+  display:flex;flex-direction:column;
+}
+.card.A{border-left:5px solid var(--rose);}
+.card.B{border-left:5px solid var(--sage);}
+.card.C{border-left:5px solid var(--gold);}
+.card.D{border-left:5px solid var(--indigo);}
+.card .num{
+  position:absolute;top:-12px;left:-12px;width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+  font-family:'Kaisei Decol';font-size:16px;box-shadow:0 3px 8px rgba(0,0,0,.18);
+}
+.card.A .num{background:var(--rose);}
+.card.B .num{background:var(--sage);}
+.card.C .num{background:var(--gold);}
+.card.D .num{background:var(--indigo);}
+.card h4{font-size:15px;color:var(--plum);margin:4px 0 10px;line-height:1.45;padding-left:26px;}
+.card p{font-size:12.8px;color:var(--ink);margin-bottom:8px;}
+.metric{
+  background:linear-gradient(transparent 55%,rgba(242,222,180,.85) 55%);
+  font-weight:700;padding:0 3px;color:var(--plum);
+}
+.numbig{font-family:'Kaisei Decol';font-weight:700;font-size:15px;}
+.numbig.rose{color:var(--rose);} .numbig.sage{color:var(--sage);}
+.numbig.gold{color:#A87E2C;} .numbig.indigo{color:var(--indigo);}
+
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);}
+.src{font-size:10.5px;color:var(--sub);font-family:'Zen Kurenaido';font-style:italic;max-width:62%;}
+.stars{font-size:13px;letter-spacing:1px;white-space:nowrap;}
+.stars .on{color:var(--gold);} .stars .off{color:#D9CFC8;}
+.salon{
+  background:rgba(176,96,122,.08);border-radius:8px;padding:7px 10px;margin-top:6px;
+  font-size:11.6px;color:var(--mauve);
+}
+.salon b{color:var(--rose);}
+.card.B .salon{background:rgba(110,139,106,.10);color:#4f6a4c;} .card.B .salon b{color:var(--sage);}
+.card.C .salon{background:rgba(196,154,74,.12);color:#8a6a26;} .card.C .salon b{color:#A87E2C;}
+.card.D .salon{background:rgba(110,97,145,.10);color:#544a72;} .card.D .salon b{color:var(--indigo);}
+
+/* Callout / summary */
+.callout{
+  background:#fff;border-radius:16px;padding:22px 26px;margin-bottom:8px;
+  box-shadow:0 4px 16px rgba(74,53,64,.08);border:2px dashed #D8B98E;
+}
+.callout h2{font-size:20px;color:var(--plum);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.callout h2 i{color:var(--gold);}
+.sumlist{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.sumlist .item{display:flex;gap:10px;font-size:13px;align-items:flex-start;}
+.sumlist .item i{color:var(--rose);margin-top:3px;}
+.hl{background:linear-gradient(transparent 58%,#F2E0B4 58%);font-weight:700;padding:0 3px;}
+
+/* Glossary */
+.gloss{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px;}
+.gbox{background:#fff;border-radius:14px;padding:16px;box-shadow:0 3px 12px rgba(74,53,64,.07);text-align:center;}
+.gbox .ic{width:50px;height:50px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;}
+.gbox h4{font-size:15px;color:var(--plum);margin-bottom:6px;}
+.gbox p{font-size:12px;color:var(--sub);}
+.gbox .ex{font-size:11px;color:var(--mauve);margin-top:8px;background:var(--cream);border-radius:8px;padding:6px;}
+.plus{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--gold);font-family:'Kaisei Decol';}
+
+/* Generic info card */
+.panel{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 3px 12px rgba(74,53,64,.07);}
+.panel h3{font-size:17px;color:var(--plum);margin-bottom:12px;display:flex;align-items:center;gap:9px;}
+.panel h3 i{color:var(--rose);}
+
+/* Evidence table */
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);}
+th{background:var(--plum);color:#fff;font-family:'Zen Kurenaido';font-weight:400;}
+td .st{color:var(--gold);font-size:12px;}
+tr:nth-child(even){background:rgba(124,90,104,.04);}
+
+/* priority steps */
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:9px;}
+.step{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:10px;padding:11px 14px;box-shadow:0 2px 8px rgba(74,53,64,.06);}
+.step::before{counter-increment:s;content:counter(s);min-width:26px;height:26px;border-radius:50%;background:var(--sage);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Kaisei Decol';font-size:13px;}
+.step .txt{font-size:13px;}
+.step .lvl{margin-left:auto;color:var(--gold);font-size:12px;white-space:nowrap;}
+
+/* voice */
+.voice{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.vbox{background:#fff;border-radius:12px;padding:15px 17px;box-shadow:0 2px 10px rgba(74,53,64,.06);border-left:4px solid var(--mauve);}
+.vbox h4{font-size:14px;color:var(--plum);margin-bottom:7px;display:flex;align-items:center;gap:7px;}
+.vbox p{font-size:12.3px;color:var(--sub);}
+
+/* alert box */
+.alertbox{background:linear-gradient(135deg,rgba(194,74,61,.08),rgba(194,74,61,.03));border:2px solid rgba(194,74,61,.3);border-radius:14px;padding:18px 22px;}
+.alertbox h3{color:var(--alert);display:flex;align-items:center;gap:9px;font-size:17px;margin-bottom:10px;}
+.alertbox ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.alertbox li{font-size:12.8px;padding-left:24px;position:relative;}
+.alertbox li::before{content:"\f071";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--alert);position:absolute;left:0;font-size:11px;}
+
+.section-title{font-family:'Kaisei Decol';font-size:21px;color:var(--plum);margin:30px 0 14px;display:flex;align-items:center;gap:10px;}
+.section-title i{color:var(--gold);}
+
+/* Footer */
+.footer{margin-top:30px;padding:20px 32px;background:var(--plum);border-radius:14px;color:rgba(255,255,255,.85);font-size:11.5px;text-align:center;font-family:'Zen Kurenaido';line-height:1.8;}
+.footer b{color:#F0D8A8;}
+
+@media(max-width:900px){.grid,.gloss{grid-template-columns:1fr 1fr;}.sumlist,.voice{grid-template-columns:1fr;}}
+@media(max-width:600px){.grid,.gloss,.grid-2{grid-template-columns:1fr;}.header{flex-direction:column;align-items:flex-start;gap:12px;}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>腸活メタ研究 <span class="accent">重要要素20選</span></h1>
+      <p class="lead">学術DB（PubMed / Europe PMC）から介入RCTメタ解析 約80本を抽出。効果量・エビデンス強度つきで、くびれサロン向けに整理。</p>
+    </div>
+    <div class="meta">
+      <div>📅 2026-06-08</div>
+      <div>📄 Deep Research Report</div>
+      <div>🔬 メタ解析 約80本＋256万人規模データ</div>
+    </div>
+  </div>
+
+  <!-- EXEC SUMMARY -->
+  <div class="callout">
+    <h2><i class="fas fa-star"></i> まず押さえる6つの結論</h2>
+    <div class="sumlist">
+      <div class="item"><i class="fas fa-circle-check"></i><div>効果は<span class="hl">「小さいが一貫して有意」</span>。200RCT/12,603人で体重−0.91kg・ウエスト−1.14cm。"楽して大幅減"ではなく<b>痩せやすい土台づくり</b>。</div></div>
+      <div class="item"><i class="fas fa-circle-check"></i><div>女性は<span class="hl">体重より先にウエスト・血糖・脂質</span>が動く。＝「体重計が変わらなくてもくびれる」の根拠。</div></div>
+      <div class="item"><i class="fas fa-circle-check"></i><div>最強エビデンスは<span class="hl">食物繊維</span>。10g/日増で全死亡−10%（256万人）。日本人女性は約8g不足＝伸びしろ大。</div></div>
+      <div class="item"><i class="fas fa-circle-check"></i><div><span class="hl">腸内多様性は繊維では即増えない</span>。発酵食品が多様性を上げる（Stanford Cell 2021）。順序は発酵食品→繊維。</div></div>
+      <div class="item"><i class="fas fa-circle-check"></i><div>条件＝<span class="hl">BMI≥25・12週以上・生活指導併用・10⁹〜10¹⁰CFU</span>。菌株でも効果が変わる。</div></div>
+      <div class="item"><i class="fas fa-circle-check"></i><div>過大評価注意：健常者では多様性は変わらず、人工甘味料は<b>逆効果</b>（Cell 2022）。</div></div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="section-title"><i class="fas fa-book-open"></i> 用語：プロバイオ／プレバイオ／シンバイオ</div>
+  <div class="gloss">
+    <div class="gbox"><div class="ic" style="background:var(--rose)"><i class="fas fa-seedling"></i></div><h4>プロバイオティクス</h4><p>体に良い<b>生きた菌そのもの</b><br>（畑に「苗」を植える）</p><div class="ex">乳酸菌・ビフィズス菌／ヨーグルト・納豆・キムチ</div></div>
+    <div class="gbox"><div class="ic" style="background:var(--sage)"><i class="fas fa-wheat-awn"></i></div><h4>プレバイオティクス</h4><p>菌の<b>エサ</b>（大腸まで届く成分）<br>（苗に「肥料」をやる）</p><div class="ex">食物繊維・オリゴ糖・イヌリン（玉ねぎ/ごぼう）</div></div>
+    <div class="gbox"><div class="ic" style="background:var(--gold)"><i class="fas fa-circle-nodes"></i></div><h4>シンバイオティクス</h4><p><b>菌＋エサをセット</b>で摂る<br>（苗＋肥料を同時に）</p><div class="ex">ヨーグルト＋バナナ／納豆＋ねぎ／キムチ＋玉ねぎ</div></div>
+  </div>
+  <p style="text-align:center;font-size:12px;color:var(--sub);margin-top:10px;">▶ セットの方が菌が定着・増殖しやすく、メタ研究でも<span class="hl">シンバイオはプロバイオ単独よりウエスト減少が約2.5倍</span>（→要素#2）</p>
+
+  <!-- CATEGORY A -->
+  <div class="band band-A"><i class="fas fa-person-dress"></i> A. 体重・体脂肪・くびれ <span class="tag">効果は小さいが一貫</span></div>
+  <div class="grid">
+    <div class="card A"><span class="num">1</span><h4>体重・BMI・ウエスト・体脂肪を一貫して下げる</h4>
+      <p>体重 <span class="numbig rose">−0.91kg</span>／BMI −0.28／ウエスト <span class="numbig rose">−1.14cm</span>／体脂肪率 −0.68%（全p&lt;0.001）。<span class="metric">筋肉量は減らない</span>＝体組成の質が改善。</p>
+      <div class="salon"><b>サロン活用</b>：「脂肪を減らし筋肉を残す」体組成改善として説明。</div>
+      <div class="foot"><span class="src">Saadati, Obesity Reviews 2024 / 200RCT・12,603人</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card A"><span class="num">2</span><h4>シンバイオ ＞ プロバイオ単独</h4>
+      <p>シンバイオで体重 <span class="numbig rose">−1.91kg</span>・ウエスト −1.85cm。ウエスト減少は<span class="metric">−1.31cm vs −0.53cm（約2.5倍）</span>。</p>
+      <div class="salon"><b>サロン活用</b>：乳酸菌＋食物繊維/オリゴ糖の<b>セット摂取</b>を基本設計に。</div>
+      <div class="foot"><span class="src">アンブレラレビュー Clinical Nutrition 2024</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card A"><span class="num">3</span><h4>女性は「ウエスト・インスリン・LDL」が先に動く</h4>
+      <p>体重・BMIは非有意。一方<span class="metric">ウエスト −0.39cm（p=0.0003）</span>・インスリン（p=0.001）・LDL（p=0.01）は有意。</p>
+      <div class="salon"><b>サロン活用</b>：「体重不変でもくびれ・代謝が先に変わる」の裏付け。脱・体重計依存。</div>
+      <div class="foot"><span class="src">女性専用メタ解析 Curr Res Food Sci 2024 / 11RCT</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card A"><span class="num">4</span><h4>効果が出る条件＝継続×併用</h4>
+      <p>BMI≥25・<span class="metric">12週以上</span>・10⁹〜10¹⁰CFU/日。<span class="numbig rose">生活指導併用−0.89kg</span> vs 単独−0.28kg（非有意）。</p>
+      <div class="salon"><b>サロン活用</b>：「3ヶ月継続＋食事指導」設計がそのままエビデンスに合致。</div>
+      <div class="foot"><span class="src">東アジア中心メタ Front Public Health 2026 / GRADE Mod</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card A"><span class="num">5</span><h4>菌株で効果が違う（株特異性）</h4>
+      <p>L.gasseri＝<span class="metric">内臓脂肪</span>（SBT2055で腹部脂肪−4.6〜8.5%）／L.plantarum＝BMI・内臓脂肪−0.32・IL-6−0.47。</p>
+      <div class="salon"><b>サロン活用</b>：漠然と「乳酸菌」でなく<b>株を指定</b>して訴求。</div>
+      <div class="foot"><span class="src">L.plantarumメタ IJMS 2024 / L.gasseri RCT</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+  </div>
+
+  <!-- CATEGORY B -->
+  <div class="band band-B"><i class="fas fa-wheat-awn"></i> B. 食物繊維・プレバイオ <span class="tag">エビデンス最強カテゴリ</span></div>
+  <div class="grid">
+    <div class="card B"><span class="num">6</span><h4>繊維10g/日増で全死亡−10%</h4>
+      <p>全死亡 <span class="numbig sage">RR 0.90</span>／心血管死 RR 0.87／<span class="metric">水溶性繊維で心血管死 RR 0.62</span>。15g/日以下で効果が急峻。</p>
+      <div class="salon"><b>サロン活用</b>：腸活の「土台＝食物繊維」を最優先メッセージに。</div>
+      <div class="foot"><span class="src">Front Nutr 2023 / 256万人 ・ PLoS Med 2020</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card B"><span class="num">7</span><h4>日本人女性は繊維が約8g不足</h4>
+      <p>平均 <span class="numbig sage">16.9g/日</span> vs 目標18g vs WHO理想<span class="metric">25g（約32%不足）</span>。最も恩恵が大きい低摂取域。</p>
+      <div class="salon"><b>サロン活用</b>：「あと小鉢2品」で恩恵が最大化、と具体提示。</div>
+      <div class="foot"><span class="src">令和5年 国民健康栄養調査／食事摂取基準2025</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card B"><span class="num">8</span><h4>血糖・インスリン・血圧を改善</h4>
+      <p>空腹時血糖 ES <span class="numbig sage">−0.55</span>／インスリン−1.22／HbA1c−0.38／血圧−1.72（全p&lt;0.001）。<span class="metric">血糖スパイク抑制→脂肪蓄積抑制</span>。</p>
+      <div class="salon"><b>サロン活用</b>：機序ストーリーで「やせ体質」を説明可能。</div>
+      <div class="foot"><span class="src">アンブレラ Front Nutr 2022 / 52メタ・47,197人</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card B"><span class="num">9</span><h4>多様性より「有益菌＋酪酸」を増やす</h4>
+      <p>α多様性は不変／<span class="metric">Bifido・Lacto・酪酸が有意増</span>。イヌリン・GOSが効果的（GOSでBifido 7%→34.8%）。</p>
+      <div class="salon"><b>サロン活用</b>：「多様性スコア」では効果を見誤る。狙うは有益菌と酪酸。</div>
+      <div class="foot"><span class="src">健常成人64RCT AJCN 2022 / N=2,099</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card B"><span class="num">10</span><h4>レジスタントスターチ＝「冷やご飯」テク</h4>
+      <p>Bifidobacterium <span class="numbig sage">+1.75</span>／Faecalibacterium（抗炎症菌）+0.70。冷ご飯・冷製パスタ・緑バナナ。</p>
+      <div class="salon"><b>サロン活用</b>：「白米を炊いて冷ます」調理テクをそのまま指導。</div>
+      <div class="foot"><span class="src">RSメタ FSHW 2025 / 24試験・N=816</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card B"><span class="num">11</span><h4>短鎖脂肪酸(酪酸)＝満腹・抗炎症・腸バリア</h4>
+      <p><span class="metric">GLP-1・PYY・レプチン</span>で食欲抑制、腸バリア強化、抗炎症。増やす食材＝イヌリン（玉ねぎ/ごぼう）・β-グルカン（大麦/オートミール）。</p>
+      <div class="salon"><b>サロン活用</b>：「腸活＝SCFAを増やす食事」と一言で機序を伝達。</div>
+      <div class="foot"><span class="src">SCFAレビュー Biology 2022</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+  </div>
+
+  <!-- CATEGORY C -->
+  <div class="band band-C"><i class="fas fa-jar"></i> C. 発酵食品・腸内多様性 <span class="tag">多様性は発酵食品で上がる</span></div>
+  <div class="grid">
+    <div class="card C"><span class="num">12</span><h4>多様性を上げるのは繊維より発酵食品</h4>
+      <p>発酵食品群で<span class="metric">腸内多様性が有意増＋炎症タンパク19種が低下</span>。高繊維食群は多様性不変。腸活で最強RCTの1つ。</p>
+      <div class="salon"><b>サロン活用</b>：「まず発酵食品→慣れたら繊維」の段階設計。</div>
+      <div class="foot"><span class="src">Wastyk, Stanford Cell 2021 RCT / N=36</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card C"><span class="num">13</span><h4>「週30種類の植物」は大規模データ由来</h4>
+      <p>週30種以上 vs 10種以下で腸内多様性に有意差 <span class="numbig gold">P=4×10⁻¹⁹⁷</span>。<span class="metric">量より「種類数」</span>が予測力大。</p>
+      <div class="salon"><b>サロン活用</b>：「週30種チャレンジ」（ハーブも1種）で続けやすい。</div>
+      <div class="foot"><span class="src">American Gut Project mSystems 2018 / N=1万+</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card C"><span class="num">14</span><h4>ヨーグルトは「脂肪あり・高頻度」で腹部肥満減</h4>
+      <p>高脂肪ヨーグルト<span class="metric">週8食 HR 0.84</span>／<span class="numbig gold">週21食 HR 0.37（63%減）</span>。低脂肪・全体は非有意。</p>
+      <div class="salon"><b>サロン活用</b>：「無脂肪より普通のプレーンを毎日」と根拠ある助言。</div>
+      <div class="foot"><span class="src">発酵乳×腹部肥満 EWD 2025 / N=41,430</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card C"><span class="num">15</span><h4>キムチ・発酵食品は血糖・中性脂肪・血圧を改善</h4>
+      <p>空腹時血糖 −1.93／中性脂肪 <span class="numbig gold">−28.9mg/dL</span>／血圧 −3.5/−2.7mmHg（<span class="metric">I²=0%で高信頼</span>）。</p>
+      <div class="salon"><b>サロン活用</b>：キムチ・味噌・納豆を「代謝改善食」と位置づけ。</div>
+      <div class="foot"><span class="src">キムチメタ Nutr Rev 2025 / 発酵食品×炎症メタ</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+  </div>
+
+  <!-- CATEGORY D -->
+  <div class="band band-D"><i class="fas fa-heart-pulse"></i> D. お通じ・代謝・全身・美容 <span class="tag">即実感〜全身ケア</span></div>
+  <div class="grid">
+    <div class="card D"><span class="num">16</span><h4>お通じ・便秘を改善（即実感ポイント）</h4>
+      <p>サイリウムで排便 <span class="numbig indigo">+1.19回/週</span>・RR1.48。プロバイオ便秘 OR 2.37。IBSも有意（82RCT/10,332）。</p>
+      <div class="salon"><b>サロン活用</b>：数日で体感でき継続動機に。サイリウム10g/日×4週。</div>
+      <div class="foot"><span class="src">機能性便秘 Clin Nutr 2020／繊維×便秘 AJCN 2022</span><span class="stars"><span class="on">★★★</span></span></div></div>
+
+    <div class="card D"><span class="num">17</span><h4>血糖・脂質という「代謝の土台」を改善</h4>
+      <p>総コレ −0.46／LDL −0.29／中性脂肪 −0.13（SMD）。<span class="metric">前糖尿病でHbA1c−0.44（GRADE High）</span>。HDLは不変。</p>
+      <div class="salon"><b>サロン活用</b>：「痩せ体質＝インスリン抵抗性と炎症を下げる」機序。</div>
+      <div class="foot"><span class="src">脂質アンブレラ 2023／T2Dメタ多数</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card D"><span class="num">18</span><h4>時間制限食(TRE)で脂肪が減る</h4>
+      <p>体重 −0.9kg／<span class="numbig indigo">脂肪量 −1.58kg</span>（<span class="metric">除脂肪量は維持</span>）。断続的断食はカロリー制限と同等。</p>
+      <div class="salon"><b>サロン活用</b>：「食べる時間帯を整える」腸活×食事タイミング併用。</div>
+      <div class="foot"><span class="src">アンブレラ JAMA Netw Open 2021／Nutrients 2020</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card D"><span class="num">19</span><h4>腸脳相関：うつ・不安・ストレスを軽減</h4>
+      <p>うつ <span class="numbig indigo">SMD −0.53</span>／不安 −0.44（有意）。<span class="metric">健常者より臨床群で効果大</span>。</p>
+      <div class="salon"><b>サロン活用</b>：ストレス過食・自律神経対策。健常者では控えめと正直に。</div>
+      <div class="foot"><span class="src">BMC Psychiatry 2025 / 72RCT・6,097人</span><span class="stars"><span class="on">★★</span><span class="off">★</span></span></div></div>
+
+    <div class="card D"><span class="num">20</span><h4>腸-肌相関＆過大評価への警告</h4>
+      <p>アトピーは改善（SCORAD −7.90、株依存）だが<span class="metric">ニキビ・乾癬は不十分</span>。健常者では多様性ほぼ不変／人工甘味料は逆効果。</p>
+      <div class="salon"><b>サロン活用</b>：「美肌に効く」と断定せず「腸内環境×炎症ケア」と表現。</div>
+      <div class="foot"><span class="src">アトピーメタ 2022／BMC Medicine 2026／Cell 2022</span><span class="stars"><span class="on">★</span><span class="off">★★</span></span></div></div>
+  </div>
+
+  <!-- EVIDENCE TABLE + PRIORITY -->
+  <div class="grid-2" style="margin-top:30px;">
+    <div class="panel">
+      <h3><i class="fas fa-chart-bar"></i> エビデンス強度 早見表</h3>
+      <table>
+        <tr><th>テーマ</th><th>強度</th><th>ひとこと</th></tr>
+        <tr><td>食物繊維×全死亡・血糖</td><td><span class="st">★★★</span></td><td>256万人・用量反応明確</td></tr>
+        <tr><td>発酵食品×多様性・炎症</td><td><span class="st">★★★</span></td><td>Stanford RCT(Cell)</td></tr>
+        <tr><td>繊維/プロバイオ×便秘</td><td><span class="st">★★★</span></td><td>効果量大・実感しやすい</td></tr>
+        <tr><td>プロ/シンバイオ×体重</td><td><span class="st">★★</span></td><td>有意だが効果量は小</td></tr>
+        <tr><td>プロ/シンバイオ×血糖脂質</td><td><span class="st">★★</span></td><td>一貫・確実性Low中心</td></tr>
+        <tr><td>腸脳相関(うつ・不安)</td><td><span class="st">★★</span></td><td>臨床群で有効</td></tr>
+        <tr><td>腸-肌(アトピー)</td><td><span class="st">★★</span></td><td>株依存。ニキビ等は★</td></tr>
+        <tr><td>健常者の「多様性が整う」</td><td><span class="st">★</span></td><td>BMC Medicine 2026が否定的</td></tr>
+      </table>
+    </div>
+    <div class="panel">
+      <h3><i class="fas fa-bullseye"></i> 実践プライオリティ（エビデンス順）</h3>
+      <div class="steps">
+        <div class="step"><div class="txt">食物繊維を総量で増やす（16.9g→+3〜5g、目標25g）</div><span class="lvl">★★★</span></div>
+        <div class="step"><div class="txt">毎日 発酵食品を1品（ヨーグルト・キムチ・味噌・納豆）</div><span class="lvl">★★★</span></div>
+        <div class="step"><div class="txt">週30種類の植物チャレンジ（種類を数える）</div><span class="lvl">★★★</span></div>
+        <div class="step"><div class="txt">繊維を多様化（水溶性＋不溶性＋冷やご飯）</div><span class="lvl">★★</span></div>
+        <div class="step"><div class="txt">シンバイオ設計（株指定のプロ＋オリゴ糖/繊維）</div><span class="lvl">★★</span></div>
+        <div class="step"><div class="txt">12週以上の継続＋食事・生活指導の併用</div><span class="lvl">★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMUNITY VOICE + ALERT -->
+  <div class="section-title"><i class="fas fa-comments"></i> SNSの声 ＆ やってはいけないこと</div>
+  <div class="grid-2">
+    <div class="voice" style="grid-template-columns:1fr;">
+      <div class="vbox"><h4><i class="fas fa-location-dot" style="color:var(--rose)"></i> 日本のSNS</h4><p>発酵食品（納豆・ヨーグルト・キムチ）と「酪酸菌」サプリの実体験が中心。肌・メンタル改善の声が多い一方、<b>「1ヶ月−6kg」には慎重論</b>（個人差・カロリー管理が主因）。誇大訴求への反発あり。</p></div>
+      <div class="vbox"><h4><i class="fas fa-globe" style="color:var(--indigo)"></i> グローバルのSNS</h4><p>「高繊維・プロバイオで内臓脂肪減」派 vs「ファイバー不要(カーニボア)」派が対立。特定菌の派手な減量事例はバズるが<b>症例報告レベルでエビデンスは弱い</b>。専門家は冷静。</p></div>
+    </div>
+    <div class="alertbox">
+      <h3><i class="fas fa-triangle-exclamation"></i> 誠実な線引き（NG・注意）</h3>
+      <ul>
+        <li>「飲むだけで大幅減」は根拠薄。効果量は小〜中、確実性Low〜Moderate中心。</li>
+        <li>健常者ではプロバイオで腸内多様性は<b>有意に変わらない</b>（BMC Medicine 2026）。</li>
+        <li>人工甘味料・超加工食品は腸内環境・血糖を<b>悪化</b>させる（Cell 2022, Weizmann）。</li>
+        <li>「美肌に効く」と断定NG。ニキビ・乾癬はエビデンス不十分。</li>
+        <li>極端な低繊維食は逆効果。まず繊維と発酵食品の土台から。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <b>出典</b>：Europe PMC / PubMed 介入RCTメタ解析 約80本（タイトルにmeta-analysis/systematic review必須化で抽出）＋Web調査3本＋X検索2本｜
+    主要：Saadati(Obesity Reviews 2024, 200RCT/12,603) ・ Reynolds(PLoS Med 2020) ・ Wastyk(Cell 2021, Stanford) ・ American Gut(mSystems 2018) ・ アンブレラ各種<br>
+    <b>くびれサロン Deep Research</b>｜作成: 2026-06-08 ｜ ※効果量は各メタ解析の代表値。確実性（GRADE等）は本文レポート参照。
+  </div>
+
+</div>
+</body>
+</html>
