@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Fable 5 停止直前「やっておいてよかった」事例 — X分析</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@600;800&family=Inter:wght@400;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --navy:#0B2545; --navy2:#13315C; --steel:#1B4965; --blue:#2563EB; --blue-l:#3B82F6;
+  --sky:#0EA5E9; --cyan:#06B6D4; --ink:#1E293B; --sub:#475569; --cap:#64748B;
+  --line:#E2E8F0; --bg:#F4F7FB; --card:#FFFFFF; --amber:#F59E0B; --danger:#E0566B;
+  --mark:#BFDBFE;
+}
+body {
+  font-family: 'Zen Kaku Gothic New','Inter',-apple-system,sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px; line-height: 1.75; letter-spacing: 0.01em;
+  background-image:
+    radial-gradient(circle at 90% -5%, rgba(37,99,235,0.07) 0, transparent 38%),
+    radial-gradient(circle at 0% 100%, rgba(14,165,233,0.06) 0, transparent 35%);
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 30px 24px 40px; width: 100%; }
+
+/* Header */
+.header {
+  position: relative; overflow: hidden;
+  padding: 38px 42px; margin-bottom: 30px;
+  background: linear-gradient(125deg, var(--navy) 0%, var(--navy2) 50%, var(--steel) 100%);
+  border-radius: 20px; color: #fff;
+  box-shadow: 0 20px 45px -18px rgba(11,37,69,0.6);
+}
+.header::before{
+  content:""; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 26px 26px; opacity:.6;
+}
+.header::after {
+  content: "\f0e7"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+  position: absolute; right: 26px; top: -26px; font-size: 170px;
+  color: rgba(96,165,250,0.12);
+}
+.header .inner{ position:relative; z-index:2; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;}
+.kicker{ display:inline-flex; align-items:center; gap:8px; font-family:'Inter'; font-size:11.5px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:#93C5FD; margin-bottom:14px;}
+.kicker .dot{ width:7px;height:7px;border-radius:50%;background:var(--amber); box-shadow:0 0 0 4px rgba(245,158,11,.25);}
+.header h1 {
+  font-family: 'Shippori Mincho','Zen Kaku Gothic New',serif;
+  font-size: 31px; font-weight: 800; line-height: 1.45; letter-spacing:.02em;
+}
+.header .sub { font-size: 13.5px; opacity: 0.86; margin-top: 12px; max-width: 700px; font-weight:400; line-height:1.85;}
+.header .meta { text-align: right; font-size: 12.5px; min-width: 160px; }
+.header .meta .pill{ display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(6px); padding:5px 13px; border-radius:30px; font-weight:600; margin-bottom:12px; color:#fff; font-size:11.5px;}
+.header .meta div{ opacity:.85; margin-top:3px;}
+
+/* Section title */
+.sec-title {
+  font-family: 'Shippori Mincho',serif; font-size: 20px; font-weight:800; color: var(--navy);
+  margin: 38px 0 18px; display: flex; align-items: center; gap: 14px;
+}
+.sec-title .sec-num {
+  font-family:'Inter'; font-weight:800; font-size:13px;
+  width: 30px; height: 30px; border-radius: 9px; flex-shrink:0;
+  background: linear-gradient(135deg,var(--blue),var(--sky)); color:#fff;
+  display:inline-flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 14px -5px rgba(37,99,235,.7);
+}
+.sec-title i{ color:var(--blue); font-size:18px;}
+.sec-title .rule{ flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent);}
+
+/* Grid */
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+/* Card */
+.card {
+  background: var(--card); border:1px solid var(--line);
+  border-radius: 16px; padding: 22px 24px;
+  box-shadow: 0 10px 24px -16px rgba(15,42,67,0.4);
+  position: relative; transition: transform .2s;
+}
+.card::before{ content:""; position:absolute; left:0; top:18px; bottom:18px; width:4px; border-radius:4px;
+  background:linear-gradient(180deg,var(--blue),var(--sky));}
+.card.span2 { grid-column: span 2; }
+.card.span3 { grid-column: span 3; }
+.card h3 {
+  font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700; font-size: 16px; color: var(--navy);
+  margin-bottom: 14px; display: flex; align-items: center; gap: 10px; letter-spacing:.02em;
+}
+.card h3 .ic{ width:30px;height:30px;border-radius:9px; display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(37,99,235,0.1); color:var(--blue); font-size:14px; flex-shrink:0;}
+.card .desc{ font-size:12px;color:var(--cap);margin-bottom:10px; line-height:1.6;}
+/* accent variants (blue spectrum) */
+.a-navy::before{ background:linear-gradient(180deg,var(--navy2),var(--steel)); }
+.a-navy h3 .ic{ background:rgba(19,49,92,0.1); color:var(--navy2);}
+.a-sky::before{ background:linear-gradient(180deg,var(--sky),var(--cyan)); }
+.a-sky h3 .ic{ background:rgba(14,165,233,0.12); color:var(--sky);}
+.a-cyan::before{ background:linear-gradient(180deg,var(--cyan),#22D3EE); }
+.a-cyan h3 .ic{ background:rgba(6,182,212,0.12); color:var(--cyan);}
+.a-amber::before{ background:linear-gradient(180deg,var(--amber),#FBBF24); }
+.a-amber h3 .ic{ background:rgba(245,158,11,0.14); color:var(--amber);}
+.a-danger::before{ background:linear-gradient(180deg,var(--danger),#F08CA0); }
+.a-danger h3 .ic{ background:rgba(224,86,107,0.12); color:var(--danger);}
+
+.highlight { background: linear-gradient(transparent 62%, var(--mark) 62%); padding: 0 3px; font-weight: 700; }
+.hl-blue { color:var(--blue); font-weight:700; }
+.hl-amber { background: linear-gradient(transparent 62%, rgba(245,158,11,0.32) 62%); padding: 0 3px; font-weight: 700; }
+.num { font-family:'Inter'; color: var(--blue); font-weight: 800; font-size: 1.05em; }
+
+.tag { display:inline-block; font-family:'Inter'; font-size: 10px; font-weight:700; padding: 2px 8px; border-radius: 6px;
+  margin-right: 6px; letter-spacing:.04em; vertical-align: 1px;}
+.tag.ja { background:#DBEAFE; color:#1D4ED8; } .tag.en { background:#CFFAFE; color:#0E7490; } .tag.zh { background:#E0E7FF; color:#4338CA; }
+
+/* Callout */
+.callout {
+  background: linear-gradient(135deg,#F0F6FF,#E8F3FB);
+  border: 1px solid #CBDEF5; border-left:4px solid var(--blue);
+  border-radius: 16px; padding: 24px 28px;
+  box-shadow: 0 10px 26px -18px rgba(37,99,235,0.5);
+}
+.callout .lead { font-family:'Shippori Mincho',serif; font-weight:800; font-size: 17px; color:var(--navy); margin-bottom: 12px; }
+.callout ul { list-style:none; }
+.callout li { padding: 6px 0 6px 28px; position: relative; }
+.callout li::before {
+  content:"\f054"; font-family:"Font Awesome 6 Free"; font-weight:900; font-size:10px;
+  position:absolute; left:2px; top:9px; color:var(--blue);
+}
+
+/* fact list */
+.facts { list-style:none; }
+.facts li { display:flex; padding: 8px 0; border-bottom: 1px solid var(--line); gap: 12px; }
+.facts li:last-child { border-bottom:none; }
+.facts .k { font-weight:700; color:var(--navy); min-width: 92px; flex-shrink:0; font-size:12.5px;}
+
+/* mini item list */
+.items { list-style:none; }
+.items li { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.items li:last-child { border-bottom:none; }
+.items .who { font-weight:700; color:var(--navy); }
+.items .what { display:block; font-size: 12.5px; margin-top: 1px; color:var(--sub); line-height:1.6;}
+
+/* Quadrant matrix */
+.matrix-wrap { position: relative; padding: 34px 20px 40px 50px; }
+.matrix { display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 350px; }
+.quad { border-radius: 14px; padding: 18px; display:flex; flex-direction:column; gap:5px; position:relative; border:1px solid; }
+.quad .qh { font-weight:700; font-size: 13.5px; color:var(--navy);}
+.quad .qi { font-size: 12px; color:var(--sub);}
+.q-win  { background:linear-gradient(135deg,#EFF6FF,#DBEAFE); border-color:#BFDBFE; }
+.q-win2 { background:linear-gradient(135deg,#ECFEFF,#CFFAFE); border-color:#A5F3FC; }
+.q-mid  { background:linear-gradient(135deg,#F8FAFC,#EEF2F7); border-color:#E2E8F0; }
+.q-lose { background:linear-gradient(135deg,#FEF1F3,#FBDDE3); border-color:#F4C2CC; border-style:dashed; }
+.q-badge { position:absolute; top:12px; right:14px; font-family:'Inter'; font-size:10px; font-weight:700; padding:3px 9px; border-radius:20px; }
+.q-badge.win { background:var(--blue); color:#fff; } .q-badge.lose { background:var(--danger); color:#fff; }
+.axis-y { position:absolute; left:2px; top:50%; transform:rotate(-90deg) translateX(50%); transform-origin:left; white-space:nowrap; font-weight:700; color:var(--cap); font-size:11px; font-family:'Inter';}
+.axis-top { position:absolute; top:8px; left:50px; font-size:11px; color:var(--blue); font-weight:700;}
+.axis-bot { position:absolute; bottom:14px; left:50px; font-size:11px; color:var(--danger); font-weight:700;}
+
+/* compare table */
+.cmp { width:100%; border-collapse: collapse; font-size: 13px; overflow:hidden; border-radius:12px;}
+.cmp th, .cmp td { padding: 12px 14px; text-align:left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.cmp thead th { background: var(--navy); color:#fff; font-weight:700; font-size:13px; letter-spacing:.03em;}
+.cmp tbody tr:nth-child(even){ background:#F8FAFC;}
+.cmp tr td:first-child { font-weight:700; color:var(--navy); white-space:nowrap; }
+.cmp .flag { font-size: 15px; margin-right:4px;}
+
+/* steps */
+.steps { counter-reset: step; list-style:none; }
+.steps li { position: relative; padding: 14px 16px 14px 56px; margin-bottom:12px; background:var(--card);
+  border:1px solid var(--line); border-radius:13px; box-shadow:0 8px 20px -16px rgba(15,42,67,.4); font-size:13px; line-height:1.7;}
+.steps li::before {
+  counter-increment: step; content: counter(step);
+  position:absolute; left:14px; top:14px; width:28px; height:28px;
+  background:linear-gradient(135deg,var(--blue),var(--sky)); color:#fff; border-radius:9px;
+  display:flex; align-items:center; justify-content:center; font-family:'Inter'; font-weight:800; font-size:13px;
+  box-shadow:0 6px 13px -5px rgba(37,99,235,.7);
+}
+
+/* stats */
+.stat-row { display:flex; gap:14px; flex-wrap:wrap; }
+.stat { flex:1; min-width: 110px; text-align:center; background:#F8FAFC; border:1px solid var(--line);
+  border-radius:13px; padding:16px 10px;}
+.stat .big { font-family:'Inter'; font-size: 25px; color:var(--navy); font-weight:800; letter-spacing:-.02em;}
+.stat .lbl { font-size: 11px; color:var(--cap); margin-top:2px;}
+.stat.alert .big{ color:var(--amber);}
+
+a { color:var(--blue); text-decoration:none; word-break:break-all; font-weight:600;}
+a:hover { text-decoration:underline; }
+
+/* Footer */
+.footer { margin-top: 36px; padding: 26px 34px; background: linear-gradient(125deg,var(--navy),var(--steel));
+  border-radius: 18px; color:rgba(255,255,255,0.82); font-size:12.5px; text-align:center; box-shadow:0 16px 36px -22px rgba(11,37,69,.7);}
+.footer .em { color:#fff; font-weight:700; font-family:'Shippori Mincho',serif; font-size:15px; display:block; margin-bottom:6px;}
+.footer .em b{ color:#7DD3FC;}
+.footer .note{ margin-top:10px; font-size:11px; opacity:0.6;}
+
+@media (max-width: 880px) {
+  .grid, .grid-2 { grid-template-columns: 1fr; }
+  .card.span2, .card.span3 { grid-column: span 1; }
+  .header .inner { flex-direction: column; align-items: flex-start; }
+  .header .meta{ text-align:left;}
+  .matrix { height: auto; grid-template-columns:1fr; grid-template-rows:none; }
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="inner">
+      <div>
+        <div class="kicker"><span class="dot"></span>Intelligence Report &middot; AI BCP</div>
+        <h1>Claude Fable 5 停止直前<br>「やっておいてよかった」事例 — X分析</h1>
+        <p class="sub">公開わずか約3〜4日で米政府の輸出管理指令により全ユーザー停止。その直前の「駆け込み成果」を日・英・中の3言語で収集し、<b>成果物の種類 × モデル依存度</b>の2軸で分類・分析する。</p>
+      </div>
+      <div class="meta">
+        <span class="pill">📊 緊急分析</span>
+        <div>📅 2026-06-13</div>
+        <div>📄 X / grok-x-search</div>
+        <div>🌐 ja &middot; en &middot; zh</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 0. EXEC SUMMARY -->
+  <div class="sec-title"><span class="sec-num">0</span><i class="fas fa-bullseye"></i> エグゼクティブサマリー<span class="rule"></span></div>
+  <div class="callout">
+    <div class="lead">💡 コア発見：<span class="hl-blue">モデル非依存の形で残した人だけが勝った</span></div>
+    <ul>
+      <li>「やっておいてよかった」と語れた人の成果物には明確な偏り。<span class="highlight">コード／仕組み／指示書／harness／ドキュメント</span>で残した人ほど、停止後も無傷 or 他モデルへ移行できた。</li>
+      <li><b>対照群</b>：<span class="hl-amber">64時間セッションが夜中に突然停止して全部無駄</span>（John Torres）― 揮発的な対話に価値を閉じ込めた人は被害大。</li>
+      <li><b>3言語の温度差</b>：日＝実務成果＋ライフハック ／ 英＝量的エンジニアリング＋「システムを残せ」 ／ 中＝性能実測＋地政学リスク論。</li>
+      <li><b>最重要教訓（全言語共通）</b>：<span class="highlight">モデルに依存するな。乗り換え可能なシステムと成果物として残せ。</span></li>
+    </ul>
+  </div>
+
+  <!-- 1. BACKGROUND -->
+  <div class="sec-title"><span class="sec-num">1</span><i class="fas fa-circle-info"></i> 背景（インシデント概要）<span class="rule"></span></div>
+  <div class="grid-2">
+    <div class="card a-danger">
+      <h3><span class="ic"><i class="fas fa-triangle-exclamation"></i></span> 何が起きたか</h3>
+      <ul class="facts">
+        <li><span class="k">対象</span><span>Claude Fable 5 / Mythos 5（最上位ティア）</span></li>
+        <li><span class="k">公開</span><span>2026年6月9日</span></li>
+        <li><span class="k">停止</span><span>6月12〜13日（公開から<span class="num">約3〜4日</span>）</span></li>
+        <li><span class="k">理由</span><span>米政府の輸出管理指令（国家安全保障・jailbreak疑惑）</span></li>
+        <li><span class="k">範囲</span><span>外国籍だけ切り分け不可 → <b>全ユーザー停止</b></span></li>
+        <li><span class="k">影響外</span><span>Opus 4.8 等は継続利用可能</span></li>
+      </ul>
+      <p style="margin-top:12px; font-size:12.5px; color:var(--sub);">挙動：稼働中セッションはエラー終了、新規は Opus 4.8 等へ自動フォールバック。</p>
+    </div>
+    <div class="card a-navy">
+      <h3><span class="ic"><i class="fas fa-chart-line"></i></span> 拡散規模（Anthropic公式投稿）</h3>
+      <div class="stat-row">
+        <div class="stat alert"><div class="big">41.2M</div><div class="lbl">インプレッション</div></div>
+        <div class="stat"><div class="big">58,952</div><div class="lbl">いいね</div></div>
+        <div class="stat"><div class="big">19,249</div><div class="lbl">リポスト</div></div>
+      </div>
+      <p style="margin-top:16px; font-size:12.5px;">📢 公式声明：<a href="https://www.anthropic.com/news/fable-mythos-access">anthropic.com/news/fable-mythos-access</a></p>
+      <p style="margin-top:10px; color:var(--sub);"><span class="tag" style="background:#DBEAFE;color:#1D4ED8;">桁外れの拡散</span>事件性・地政学リスクとして全言語圏でトレンド化。</p>
+    </div>
+  </div>
+
+  <!-- 2. CATEGORIES -->
+  <div class="sec-title"><span class="sec-num">2</span><i class="fas fa-layer-group"></i> 「やっておいてよかった」成果物の7分類<span class="rule"></span></div>
+  <div class="grid">
+    <div class="card">
+      <h3><span class="ic"><i class="fas fa-wrench"></i></span> A. 業務システム・自動化</h3>
+      <p class="desc">納品物がコード／仕組みとして自立。最も「残ってよかった」層。</p>
+      <ul class="items">
+        <li><span class="tag ja">JA</span><span class="who">米村歩</span><span class="what">非対話型課金対策の仕組みをFableに作らせた</span></li>
+        <li><span class="tag ja">JA</span><span class="who">nixsia</span><span class="what">株価分析ツールを一通り仕上げた</span></li>
+        <li><span class="tag en">EN</span><span class="who">Sam Carlton</span><span class="what">100%ローカルの agent coding harness を構築・ベンチ・反復</span></li>
+      </ul>
+    </div>
+    <div class="card a-sky">
+      <h3><span class="ic"><i class="fas fa-mobile-screen"></i></span> B. アプリ・ゲーム一気通貫</h3>
+      <p class="desc">ワンショット／長時間性能を活かした駆け込み完成。</p>
+      <ul class="items">
+        <li><span class="tag en">EN</span><span class="who">Anthony Kroeger</span><span class="what">ultracodeを3時間回しモバイルアプリを1ショットビルド</span></li>
+        <li><span class="tag en">EN</span><span class="who">Muhammet A.</span><span class="what">3D戦略ゲーム＋サポートチャットをワンショット追加</span></li>
+        <li><span class="tag en">EN</span><span class="who">Marcel</span><span class="what">アプリ改善完了の直後にban、「間に合った」</span></li>
+      </ul>
+    </div>
+    <div class="card a-cyan">
+      <h3><span class="ic"><i class="fas fa-recycle"></i></span> C. リファクタリング・移行</h3>
+      <p class="desc">既存資産を一気に書き直す「最後の大改修」。</p>
+      <ul class="items">
+        <li><span class="tag en">EN</span><span class="who">Mark Krynsky</span><span class="what">コードベース全体をリファクタリング</span></li>
+        <li><span class="tag en">EN</span><span class="who">Sarthak Rawool</span><span class="what">48時間で2週間分超の機能をリリース</span></li>
+        <li><span class="tag zh">ZH</span><span class="who">Jhsu</span><span class="what">過去プロジェクトをFableで一気に書き直す価値あり</span></li>
+      </ul>
+    </div>
+    <div class="card a-navy">
+      <h3><span class="ic"><i class="fas fa-list-check"></i></span> D. 指示書・スキル整備</h3>
+      <p class="desc">「指示の仕方」自体を資産化。次モデルでも使える最強の保険。</p>
+      <ul class="items">
+        <li><span class="tag ja">JA</span><span class="who">Jxxxash</span><span class="what">仕事のskills改善指示書を先に作っておいた</span></li>
+        <li><span class="tag ja">JA</span><span class="who">しん</span><span class="what">問題の解決策と手順を出力</span></li>
+        <li><span class="tag zh">ZH</span><span class="who">Wigglenatorr</span><span class="what">Claudeスキル(seedance)の構築が間に合った</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="ic"><i class="fas fa-chart-bar"></i></span> E. 分析・予測・リサーチ</h3>
+      <p class="desc">一回性だが結果（レポート・予測）が手元に残る。</p>
+      <ul class="items">
+        <li><span class="tag ja">JA</span><span class="who">たまさん</span><span class="what">宝塚記念の予測をやっておいてよかった</span></li>
+      </ul>
+    </div>
+    <div class="card a-sky">
+      <h3><span class="ic"><i class="fas fa-broom"></i></span> F. 複合・棚卸し（一括）</h3>
+      <p class="desc">「今日のうちに全部やる」と多領域を一気に片付けた層。</p>
+      <ul class="items">
+        <li><span class="tag ja">JA</span><span class="who">みなみ</span><span class="what">前日に5タスク完了（事業計画／スキル指示書総点検／有料note／Obsidian仕組み化／配線修正）</span></li>
+      </ul>
+    </div>
+    <div class="card span3 a-amber">
+      <h3><span class="ic"><i class="fas fa-clover"></i></span> G. 周辺ラッキー系（成果物ではない）</h3>
+      <ul class="items" style="display:grid;grid-template-columns:1fr 1fr;gap:0 28px;">
+        <li><span class="tag ja">JA</span><span class="who">Yo3-freeman</span><span class="what">停止のお詫びかWeekly limitsがリセット、100%寸前で助かった</span></li>
+        <li style="border-bottom:none;"><span class="tag ja">JA</span><span class="who">chachamaru</span><span class="what">Pro代を諦めた人向けにApple返金手順を拡散</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. MATRIX -->
+  <div class="sec-title"><span class="sec-num">3</span><i class="fas fa-table-cells-large"></i> 2軸分析：成果物の種類 × モデル依存度<span class="rule"></span></div>
+  <div class="card span3 a-navy">
+    <p style="margin-bottom:4px;">満足度の高さは <span class="highlight">成果物がモデルから切り離して残るか</span> でほぼ決まる。</p>
+    <div class="matrix-wrap">
+      <div class="axis-top">▲ モデル非依存（残る・移行できる）</div>
+      <div class="matrix">
+        <div class="quad q-win">
+          <span class="q-badge win">勝ち組</span>
+          <span class="qh">A 業務システム / harness</span>
+          <span class="qi">D 指示書・スキル</span>
+          <span class="qi" style="color:var(--blue);">→ 停止後もOpus等へ移行可能</span>
+        </div>
+        <div class="quad q-win2">
+          <span class="q-badge win">勝ち組</span>
+          <span class="qh">C リファクタ / 移行</span>
+          <span class="qi">B アプリ / ゲーム</span>
+          <span class="qi" style="color:var(--cyan);">→ 自立した納品物として残る</span>
+        </div>
+        <div class="quad q-mid">
+          <span class="qh">E 分析・予測レポート</span>
+          <span class="qi">G 返金・制限リセット</span>
+          <span class="qi" style="color:var(--cap);">→ 結果は残るが再生成は不可</span>
+        </div>
+        <div class="quad q-lose">
+          <span class="q-badge lose">被害ゾーン</span>
+          <span class="qh">F 複合棚卸し（着地次第）</span>
+          <span class="qi" style="color:var(--danger);">⚠ John Torres型：64hセッションが夜中に止まり全損</span>
+          <span class="qi" style="color:var(--danger);">対話プロセス自体に価値を置いた人</span>
+        </div>
+      </div>
+      <div class="axis-bot">▼ モデル依存（揮発・対話に閉じる）</div>
+      <div class="axis-y">一回性　←→　反復利用</div>
+    </div>
+    <p style="margin-top:6px;font-size:12.5px; color:var(--sub);">📌 示唆：「Fableでやっておいてよかった」と言えるかは、<span class="hl-amber">作業の途中で成果を確定ファイル化していたか</span>で分岐した。</p>
+  </div>
+
+  <!-- 4. LANGUAGE COMPARE -->
+  <div class="sec-title"><span class="sec-num">4</span><i class="fas fa-globe"></i> 言語圏別の論調分析<span class="rule"></span></div>
+  <div class="card span3">
+    <table class="cmp">
+      <thead>
+        <tr><th>軸</th><th><span class="flag">🇯🇵</span>日本語圏</th><th><span class="flag">🇬🇧</span>英語圏</th><th><span class="flag">🇨🇳</span>中国語圏</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>成果報告の量</td><td>最多</td><td>多い</td><td>少なめ</td></tr>
+        <tr><td>成果の中心</td><td>実務（指示書・業務システム・分析・棚卸し）</td><td>エンジニアリング（アプリ・harness・リファクタの量的成果）</td><td>性能実測（評測・ベンチ）</td></tr>
+        <tr><td>主たる教訓</td><td><b>「自国AIを持て」</b>（新清士）</td><td><b>「システムを残せ・依存するな」</b>（mardehaym/Sarthak）</td><td><b>「電源は国家が握る」</b>（web3军火库）</td></tr>
+        <tr><td>感情の象徴</td><td>永田「本当に止まった…いい経験」</td><td>"RIP Fable 5"（miester他）</td><td>Wang Qicai「一人−Claude＝一工位」</td></tr>
+        <tr><td>参加層</td><td>エンジニア＋医師・士業など実務層が広い</td><td>AIエンジニア・indie hacker・CTO</td><td>技術大V・暗号×AI界隈</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4b. NOTABLE VOICES -->
+  <div class="sec-title"><span class="sec-num"><i class="fas fa-star" style="font-size:12px;"></i></span><i class="fas fa-bullhorn"></i> 著名・高インプ層の代表発言<span class="rule"></span></div>
+  <div class="grid">
+    <div class="card">
+      <h3><span class="ic"><i class="fas fa-user-tie"></i></span> Clement Delangue <span style="font-size:11px;color:var(--cap);font-weight:400;">HF CEO・en</span></h3>
+      <p>Claude Codeのトークン効率はAPI手打ちの<span class="num">6倍</span>。「良いツール＝エージェントのキャッシュ知能」。</p>
+    </div>
+    <div class="card a-sky">
+      <h3><span class="ic"><i class="fas fa-clock"></i></span> Ethan Mollick 言及 <span style="font-size:11px;color:var(--cap);font-weight:400;">en</span></h3>
+      <p>Fable 5は<span class="highlight">最大12時間の長時間エージェント作業</span>で他モデルを上回る。</p>
+    </div>
+    <div class="card a-cyan">
+      <h3><span class="ic"><i class="fas fa-fire"></i></span> 0xTodd <span style="font-size:11px;color:var(--cap);font-weight:400;">暗号×AI大V・zh</span></h3>
+      <p>「実測で非常に賢い／危険クエリは自動で旧モデルに戻る。<span class="hl-amber">無料期間中に高難度タスクを投げ込め</span>」。</p>
+    </div>
+    <div class="card a-navy">
+      <h3><span class="ic"><i class="fas fa-code"></i></span> MobaiLabs <span style="font-size:11px;color:var(--cap);font-weight:400;">zh</span></h3>
+      <p>「Fable 5は<span class="highlight">本物のプログラマーを雇った感覚</span>。specを書くだけでproduction-readyなPRが出る」。</p>
+    </div>
+    <div class="card a-sky">
+      <h3><span class="ic"><i class="fas fa-sitemap"></i></span> @mardehaym <span style="font-size:11px;color:var(--cap);font-weight:400;">高エンゲージ・en</span></h3>
+      <p>「Fable 5パニックは依存の証拠。<span class="hl-amber">単一プロバイダ依存を避けるオーケストレーション層</span>こそ本質」。</p>
+    </div>
+    <div class="card a-danger">
+      <h3><span class="ic"><i class="fas fa-shield-halved"></i></span> 新清士 <span style="font-size:11px;color:var(--cap);font-weight:400;">ゲームAI著名・ja</span></h3>
+      <p>「米政府の指令ひとつで止まる恐ろしさ。<span class="hl-amber">自国AIを持たないリスク</span>」。</p>
+    </div>
+  </div>
+
+  <!-- 5. INSIGHTS -->
+  <div class="sec-title"><span class="sec-num">5</span><i class="fas fa-lightbulb"></i> インサイト・教訓<span class="rule"></span></div>
+  <div class="grid-2">
+    <div>
+      <ol class="steps">
+        <li><b>成果は「確定ファイル」で着地させる。</b> 対話の途中経過に価値を置くと停止・障害で蒸発。途中でコミット／保存した人が勝った。</li>
+        <li><b>指示書・スキル・harnessはモデルを超える資産。</b> カテゴリA・Dが最も「残ってよかった」。次モデルへ転用でき投資効率が最高。</li>
+        <li><b>モデル単一依存はBCPリスク。</b> 性能よりも供給の安定性・乗り換え可能性が効いた。Lauki「ban直前にharness完成→Opus 4.8に載せ替えて稼働継続」が理想形。</li>
+      </ol>
+    </div>
+    <div>
+      <ol class="steps" style="counter-reset: step 3;">
+        <li><b>地政学が技術スタックの前提を変える。</b> AIが「国家が管理する輸出規制対象」になった象徴的事件。海外SaaSモデルは政府指令で一夜にして止まりうる。</li>
+        <li><b>「駆け込み」の前提＝普段からタスクが言語化されていること。</b> みなみの「前日に5タスク完了」は、やることが事前にリスト化されていたから間に合った。</li>
+      </ol>
+      <div class="callout" style="margin-top:14px; padding:18px 22px;">
+        <div class="lead" style="font-size:15px;">🏆 理想形：Lauki型</div>
+        <p style="font-size:13px; color:var(--sub);">ban直前に <b style="color:var(--navy);">harness完成 → 停止後 Opus 4.8 に載せ替えて稼働継続</b>。<br>「モデルでなくシステムを作ったから移行できた」。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="em">結論：モデルは消えても、<b>仕組み・分析・指示書</b>は消えない。</span>
+    乗り換え可能なシステムと成果物として残した者だけが生き延びた。
+    <div class="note">出典：X(Twitter) / grok-x-search（2026-06-13収集・3言語）｜ Anthropic公式声明 anthropic.com/news/fable-mythos-access ｜ 作成：2026-06-13<br>※エンゲージメント数値は取得時点の概算。事件直後の収集のため続報で状況が変わる可能性あり。</div>
+  </div>
+
+</div>
+</body>
+</html>
