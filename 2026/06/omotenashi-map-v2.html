@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おもてなしマップ v2 — カテゴリ決定度の分類条件 再設計</title>
+<style>
+:root{
+--bg:#ffffff; --ink:#1a1a2e; --muted:#6b7280; --line:#e5e7eb;
+--f4:#10b981; --f3:#f59e0b; --f2:#ef4444; --f1:#9333ea;
+--d1:#ef4444; --d2:#f59e0b; --d3:#10b981;
+--card:#f9fafb; --accent:#6366f1;
+--good:#10b981; --warn:#f59e0b; --bad:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;}
+.wrap{max-width:980px;margin:0 auto;padding:48px 32px;}
+header{text-align:center;margin-bottom:40px;padding-bottom:28px;border-bottom:2px solid var(--line);}
+h1{font-size:31px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;}
+.sub{font-size:16px;color:var(--muted);font-weight:500;}
+.meta{font-size:13px;color:var(--muted);margin-top:14px;}
+.section{margin:44px 0;}
+.section-title{font-size:13px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.section-title::before{content:"";width:28px;height:2px;background:var(--accent);}
+h2{font-size:23px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em;}
+h3{font-size:17px;font-weight:700;margin:18px 0 10px;}
+.lead{font-size:16px;color:#374151;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:16px;}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0;}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.03em;background:#fafbfc;}
+.tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700;color:#fff;}
+.tag.d1{background:var(--d1);} .tag.d2{background:var(--d2);} .tag.d3{background:var(--d3);}
+.tag.f4{background:var(--f4);} .tag.f3{background:var(--f3);} .tag.f2{background:var(--f2);} .tag.f1{background:var(--f1);}
+.callout{border-left:4px solid var(--accent);background:#f5f3ff;border-radius:0 10px 10px 0;padding:16px 20px;margin:16px 0;font-size:14.5px;}
+.callout.warn{border-color:var(--warn);background:#fffbeb;}
+.callout.bad{border-color:var(--bad);background:#fef2f2;}
+.callout.good{border-color:var(--good);background:#ecfdf5;}
+.mono{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;background:#f3f4f6;padding:1px 6px;border-radius:5px;}
+.matrix td,.matrix th{text-align:center;border:1px solid var(--line);}
+.cell-good{background:#ecfdf5;} .cell-warn{background:#fffbeb;} .cell-bad{background:#fef2f2;}
+.cvr{font-weight:800;}
+.cvr.good{color:var(--good);} .cvr.bad{color:var(--bad);} .cvr.warn{color:#d97706;}
+.uu{font-size:12px;color:var(--muted);}
+.arrow-down{color:var(--bad);font-weight:800;}
+.line-rule{font-size:13.5px;}
+.line-rule b{color:var(--ink);}
+.note{font-size:12.5px;color:var(--muted);margin-top:6px;}
+ul.tight{margin:6px 0 6px 20px;} ul.tight li{margin:3px 0;font-size:14px;}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;margin:6px 0;}
+.chip{padding:4px 10px;border-radius:8px;font-weight:600;font-size:12.5px;}
+.chip.d1{background:#fee2e2;color:#b91c1c;} .chip.d2{background:#fef3c7;color:#b45309;} .chip.d3{background:#d1fae5;color:#047857;}
+.step{color:var(--muted);font-weight:700;}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center;}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#eef2ff;color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>おもてなしマップ v2</h1>
+  <div class="sub">カテゴリ決定度（D軸）の<strong>分類条件 再設計</strong> — 「決定度 ↑ → CVR ↑」を成立させる</div>
+  <div class="meta">基礎データ: W19（2026-05-04〜05-10）/ 対象: Web（App注記）/ v1: 2026-05-19 → v2設計: 2026-06-15</div>
+</header>
+
+<div class="callout">
+  <strong>このv2で変えたこと:</strong> 分類「方針」（カテゴリ決定度＝未決定 / 候補絞り中 / 決定済）は<strong>維持</strong>。
+  変えたのは<strong>分類「条件」（各セルへの振り分けライン）</strong>のみ。<br>
+  <strong>集計し直しは行っていない</strong> — 数値はW19実測（v1条件で集計済）をそのまま「問題の証拠」として掲載し、
+  v2条件での再集計は<span class="badge">検証ステップ（未実施）</span>として明記する。
+</div>
+
+<!-- 1. 問題 -->
+<div class="section">
+  <div class="section-title">1　問題</div>
+  <h2>D1 → D3 でCVRが上がっていない</h2>
+  <p class="lead">本来「カテゴリが決まっているほど（D1→D3）買う確度が高い」はず。だがW19実測は逆相関〜横ばいで、<strong>D軸が指標として機能していない</strong>。</p>
+
+  <table class="matrix">
+    <tr>
+      <th style="background:#fff;border:none;"></th>
+      <th><span class="tag d1">D1 未決定</span></th>
+      <th><span class="tag d2">D2 候補絞り中</span></th>
+      <th><span class="tag d3">D3 決定済</span></th>
+      <th style="background:#fafbfc;">既存率<br>D1→D3</th>
+    </tr>
+    <tr>
+      <th><span class="tag f4">F4 検討深化</span></th>
+      <td class="cell-good"><span class="cvr good">45.9%</span><div class="uu">21,615 UU</div></td>
+      <td class="cell-good"><span class="cvr good">45.8%</span><div class="uu">9,118 UU</div></td>
+      <td class="cell-good"><span class="cvr warn">41.7% <span class="arrow-down">↓</span></span><div class="uu">18,850 UU</div></td>
+      <td class="uu">7.1% → 3.2%</td>
+    </tr>
+    <tr>
+      <th><span class="tag f3">F3 商品比較</span></th>
+      <td class="cell-bad"><span class="cvr bad">0.05%</span><div class="uu">30,647 UU</div></td>
+      <td class="cell-warn"><span class="cvr warn">0.10%</span><div class="uu">21,102 UU</div></td>
+      <td class="cell-bad"><span class="cvr bad">0.05% <span class="arrow-down">↓</span></span><div class="uu">19,355 UU</div></td>
+      <td class="uu">3.0% → 2.1%</td>
+    </tr>
+    <tr>
+      <th><span class="tag f2">F2 興味探索</span></th>
+      <td class="cell-bad"><span class="cvr bad">0.01%</span><div class="uu">574,529 UU</div></td>
+      <td class="cell-warn"><span class="cvr warn">0.04%</span><div class="uu">66,108 UU</div></td>
+      <td class="cell-bad"><span class="cvr bad">0.01% <span class="arrow-down">↓</span></span><div class="uu">799,492 UU</div></td>
+      <td class="uu">0.4% → 0.6%</td>
+    </tr>
+    <tr>
+      <th><span class="tag f1">F1 漠然訪問</span></th>
+      <td class="cell-bad"><span class="cvr bad">0.04%</span><div class="uu">470,703 UU</div></td>
+      <td class="uu" style="color:#9ca3af;">該当なし</td>
+      <td class="uu" style="color:#9ca3af;">該当なし</td>
+      <td class="uu">0.7%</td>
+    </tr>
+  </table>
+  <p class="note">数値は v1（旧条件）での W19 実測。<span class="arrow-down">↓</span> = D3（決定済）が同ファネル行で CVR 最低タイ。既存顧客比率も D3 が最低。</p>
+</div>
+
+<!-- 2. 根本原因 -->
+<div class="section">
+  <div class="section-title">2　根本原因</div>
+  <h2>v1の「決定済」条件は “買う確度” でなく “指名度” を測っていた</h2>
+  <div class="callout bad">
+    v1の D3 条件 = <span class="mono">検索語が固有名詞（ブランド/商品名）かどうか</span> だけ。<br>
+    だが「ロエベ財布」のように<strong>ブランド名で検索する人ほど、その商品をピンポイントで探しに来た新規</strong>で、
+    <strong>価格比較して他所（Amazon等）に流出</strong>しやすい。検索KWの具体度は「決まっている度」ではなく
+    <strong>「他所と比較する離脱リスク」</strong>を拾ってしまい、CVRと逆相関する。
+  </div>
+  <table>
+    <tr><th>観測事実（W19）</th><th>意味</th></tr>
+    <tr><td>D3 のCVRが全ファネル行で D2 より低い</td><td>「指名検索」＝高CVR ではない</td></tr>
+    <tr><td>D3 の既存顧客比率が全行で最低（F4: 3.2% / F3: 2.1%）</td><td>D3 は新規・一見客の比率が高い＝関係性が浅い</td></tr>
+    <tr><td>F2×D3 = 799,492 UU が CVR 0.01%（最大量×最低CVR）</td><td>「ブランド名で検索したが探索段階で直帰」した<strong>流出層</strong>がD3に大量混入</td></tr>
+  </table>
+</div>
+
+<!-- 3. 調整後の分類条件 -->
+<div class="section">
+  <div class="section-title">3　調整後の分類条件（各ライン明示）</div>
+  <h2>ラベルは維持・条件に「行動ゲート」を追加</h2>
+  <p class="lead">核心は<strong>「検索KWの具体度」一発判定をやめ、必ず “行動ゲート（PD閲覧・前進行動）” で補正</strong>すること。これにより流出層が D3 から D1 に落ち、D3 には「モール内で買う確度の高い層」だけが残る。</p>
+
+  <table>
+    <tr>
+      <th style="width:130px;">決定度</th>
+      <th style="width:200px;">v1条件（旧）</th>
+      <th>v2条件（調整後の判定ライン）</th>
+    </tr>
+    <tr>
+      <td><span class="tag d3">D3 決定済</span><div class="note">買う確度・高</div></td>
+      <td class="line-rule">固有名詞（ブランド/商品名）で検索</td>
+      <td class="line-rule">
+        <b>(A)</b> 検索KW = 固有名詞 <u>または</u> カテゴリ名で対象が特定できる<br>
+        <b>AND (B)</b> 該当カテゴリのPD閲覧 ≥ 1件 かつ <u>非直帰</u>（滞在あり）<br>
+        <b>AND (C)</b> 前進行動あり：PD 3件以上比較 <u>or</u> カート追加 <u>or</u> お気に入り
+        <div class="note">＝「何を買うか決まり、モール内で買う動きに入っている」</div>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="tag d2">D2 候補絞り中</span><div class="note">買う確度・中</div></td>
+      <td class="line-rule">カテゴリ名で検索</td>
+      <td class="line-rule">
+        検索KW = 一般カテゴリ名（「財布」「ボールペン」等）<br>
+        <u>または</u> 同一カテゴリのPD 2件以上閲覧、ただし前進行動（カート/お気に入り）なし
+        <div class="note">＝「ジャンルは決定・商品は1つに絞れていない」</div>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="tag d1">D1 未決定</span><div class="note">買う確度・低</div></td>
+      <td class="line-rule">シーン/贈り先のみ（商品ジャンル未定）</td>
+      <td class="line-rule">
+        検索KW = シーン/贈り先語のみ・商品語なし（「先生プレゼント」等）<br>
+        <u>または</u> 固有名詞検索だが該当PDに滞在せず<u>直帰</u>（＝価格比較・他所購入予定の<b>流出層</b>）<br>
+        <u>または</u> PD閲覧がカテゴリ横断でバラバラ（分散度・高）
+        <div class="note">＝「ジャンル未定」＋「指名検索だが買う気配のない流出層」をここへ集約</div>
+      </td>
+    </tr>
+  </table>
+
+  <h3>補助判定（検索KWが無いセッション）</h3>
+  <table>
+    <tr><th>シグナル</th><th>判定</th></tr>
+    <tr><td>PD閲覧の<b>カテゴリ分散度</b></td><td>1カテゴリ集中 → 決定度・高（D3寄り）／ 複数カテゴリ分散 → 決定度・低（D1寄り）</td></tr>
+    <tr><td>PD閲覧<b>深度</b></td><td>同一カテゴリ3件以上 → D3寄り ／ 1-2件 → D2 ／ TOP・特集のみ → D1</td></tr>
+  </table>
+
+  <div class="callout good">
+    <strong>このラインで何が起きるか:</strong>
+    <div class="flow" style="margin-top:8px;">
+      <span class="chip d3">旧D3：ブランド名検索だが探索段階で直帰</span>
+      <span>→</span>
+      <span class="chip d1">v2では D1（流出層）へ移動</span>
+    </div>
+    <div class="flow">
+      <span class="chip d3">旧D3：指名 + PD滞在 + 前進行動あり</span>
+      <span>→</span>
+      <span class="chip d3">v2でも D3 に残る（高CVR）</span>
+    </div>
+    F2×D3 の 799,492 UU（CVR 0.01%）の大半が D1 に落ち、D3 は<strong>母数が縮小・CVRが上昇</strong> → 「決定度 ↑ → CVR ↑」が成立する方向。
+  </div>
+</div>
+
+<!-- 4. v2での想定再配置 -->
+<div class="section">
+  <div class="section-title">4　v2条件での想定（要・再集計で確定）</div>
+  <h2>数値は確定していない — 方向だけ示す</h2>
+  <div class="callout warn">
+    <strong>注意:</strong> 本資料は方針に従い<strong>集計し直していない</strong>。下表は v2 条件を適用した場合の<strong>定性的な動く方向</strong>であり、
+    実数は <span class="mono">fact_page_view + fact_cart_event + fact_favorite_event + dim_search_keywords</span> での再集計で確定する。
+  </div>
+  <table>
+    <tr><th>セル</th><th>v1実測</th><th>v2条件適用時の想定方向</th></tr>
+    <tr>
+      <td><span class="tag f2">F2</span>×<span class="tag d3">D3</span></td>
+      <td>799,492 UU / CVR 0.01%</td>
+      <td>UU <span class="arrow-down">大幅減</span>（流出層がD1へ）／ 残存層のCVR <span style="color:var(--good);font-weight:700;">上昇</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag f2">F2</span>×<span class="tag d1">D1</span></td>
+      <td>574,529 UU / CVR 0.01%</td>
+      <td>UU 増（流出層を受け入れ）／ CVRは低位のまま（性質が一致）</td>
+    </tr>
+    <tr>
+      <td><span class="tag f3">F3</span>×<span class="tag d3">D3</span></td>
+      <td>19,355 UU / CVR 0.05%</td>
+      <td>行動ゲート（PD3件以上＝F3定義と整合）通過層が残り CVR <span style="color:var(--good);font-weight:700;">上昇</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag f4">F4</span>×<span class="tag d3">D3</span></td>
+      <td>18,850 UU / CVR 41.7%</td>
+      <td>F4は既にカート/お気に入り済み＝決定度に依存せず高CVR（<strong>天井</strong>）。D軸の効きは小さい想定</td>
+    </tr>
+  </table>
+  <p class="note">F4 行はもともと 41.7〜45.9% と高位横ばい。決定度より「カート/お気に入り済み」という行動が支配的なため、D軸の単調性は F2/F3 で評価するのが妥当。</p>
+</div>
+
+<!-- 5. 検証ステップ -->
+<div class="section">
+  <div class="section-title">5　検証ステップ（次フェーズ）</div>
+  <h2>v2条件で再集計し、単調性を確認</h2>
+  <ol class="tight" style="list-style:decimal;">
+    <li><span class="step">SQL改修:</span> D軸判定に行動ゲート（非直帰 PD閲覧・カート・お気に入り）を組み込む。検索KW単独判定をやめる。</li>
+    <li><span class="step">再集計:</span> W19 同期間で v2 条件のマトリクスを再計算（<span class="mono">fact_page_view × fact_cart_event × fact_favorite_event × dim_search_keywords × fact_order_detail</span>）。</li>
+    <li><span class="step">単調性チェック:</span> 各ファネル行で D1 ≤ D2 ≤ D3 のCVR順序が成立するか確認（F2/F3を主に評価）。</li>
+    <li><span class="step">流出層の規模確認:</span> 「ブランド名検索だが直帰」UUが旧D3のどれだけを占めるか、D1への移動量を実測。</li>
+  </ol>
+  <div class="callout">
+    本資料の指示は「集計し直さなくていい」のため、上記 1〜4 は<strong>今回未実施</strong>。再集計の承認をもらえれば、v2条件のマトリクスを確定値で作成する。
+  </div>
+</div>
+
+<footer>
+  おもてなしマップ v2 — カテゴリ決定度の分類条件 再設計<br>
+  基礎データ: W19 2026-05-04〜05-10 JST（v1条件で集計済 / v2条件は未集計）<br>
+  データソース: fact_page_view / fact_order_detail / fact_cart_event / fact_favorite_event / dim_search_keywords / dim_products
+</footer>
+
+</div>
+</body>
+</html>
