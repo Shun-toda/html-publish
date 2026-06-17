@@ -19,6 +19,20 @@
 .wp-block-button{margin:0;}
 .wp-block-button__link{display:inline-block;padding:14px 32px;border-radius:999px;font-weight:700;line-height:1.2;text-decoration:none;}
 .wp-block-group .has-text-align-center{margin:10px 0;}
+/* WillGroup / carebase theme CTA (.btn-gra) for standalone HTML rendering.
+   Some articles use the theme's <p class="btn-gra ..."><a>…</a></p> CTA instead of a
+   Gutenberg button block. Without the theme CSS these classes are inert and the CTA
+   renders as a left-aligned, unpadded plain text link. These rules restore a centered,
+   padded, rounded button. Colors verified from carebase.willgroup.co.jp (2026-06):
+   .btn-gra button = blue gradient #404AD2 -> #00B3F7 with white text. */
+.btn-gra{display:block;text-align:center;margin:22px auto;}
+.btn-gra > a{display:inline-block;min-width:300px;box-sizing:border-box;padding:16px 32px;background:linear-gradient(90deg,#404AD2 0%,#00B3F7 100%);color:#fff !important;font-weight:700;text-decoration:none !important;border:0 !important;border-radius:999px;line-height:1.5;box-shadow:0 4px 14px rgba(64,74,210,.25);}
+.btn-gra > a:hover{opacity:.92;}
+/* theme helper classes (inert in standalone HTML otherwise) */
+.ta-c{text-align:center;}
+.mx-a,.m-a{margin-left:auto;margin-right:auto;}
+.fw-b{font-weight:700;}
+.sp-only{display:none;}
 </style><h1 style="font-size:32px; font-weight:700; margin:24px 0 16px; padding-bottom:10px; border-bottom:1px solid #eaeef2; line-height:1.3;">介護の申し送りテンプレート｜記載項目・例文・チェックリスト集</h1>
 <p style="margin:14px 0; line-height:1.7;">介護の申し送りは、記載項目・シーン別例文・チェックリストの3点をテンプレートとしてそろえると、伝え漏れと職員ごとの質のばらつきを減らせます。そのまま使える記載項目（統一フォーマット）と例文、無料Excelテンプレート、漏れを防ぐ仕組みまでを実務目線で整理します。</p>
 <p class="btn-gra ta-c fw-b color-primary mb-2p m-a" style="min-width: 300px;">
