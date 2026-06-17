@@ -19,6 +19,31 @@
 .wp-block-button{margin:0;}
 .wp-block-button__link{display:inline-block;padding:14px 32px;border-radius:999px;font-weight:700;line-height:1.2;text-decoration:none;}
 .wp-block-group .has-text-align-center{margin:10px 0;}
+/* WillGroup / carebase theme CTA (.btn-gra) for standalone HTML rendering.
+   Some articles use the theme's <p class="btn-gra ..."><a>…</a></p> CTA instead of a
+   Gutenberg button block. Without the theme CSS these classes are inert and the CTA
+   renders as a left-aligned, unpadded plain text link. These rules restore a centered,
+   padded, rounded button. Colors verified from carebase.willgroup.co.jp (2026-06):
+   .btn-gra button = blue gradient #404AD2 -> #00B3F7 with white text. */
+.btn-gra{display:block;text-align:center;margin:22px auto;}
+.btn-gra > a{display:inline-block;min-width:300px;box-sizing:border-box;padding:16px 32px;background:linear-gradient(90deg,#404AD2 0%,#00B3F7 100%);color:#fff !important;font-weight:700;text-decoration:none !important;border:0 !important;border-radius:999px;line-height:1.5;box-shadow:0 4px 14px rgba(64,74,210,.25);}
+.btn-gra > a:hover{opacity:.92;}
+/* theme helper classes (inert in standalone HTML otherwise) */
+.ta-c{text-align:center;}
+.mx-a,.m-a{margin-left:auto;margin-right:auto;}
+.fw-b{font-weight:700;}
+.sp-only{display:none;}
+/* WillGroup / carebase theme full-width contact CTA box (.column-contact-block).
+   The bottom CTA is <article class="column-contact-block ... color-white"> with a white
+   logo card, a centered heading, and a .btn-gra button. Without the theme CSS the box has
+   no background, so its white (color-white) heading text is invisible on the white page.
+   Colors verified from carebase.willgroup.co.jp/column (2026-06):
+   box = 3-color brand gradient (#00BDFF -> #2D55D8 -> #D41EBA), white text, rounded. */
+.column-contact-block{background:linear-gradient(43deg,#00BDFF 0%,#2D55D8 50%,#D41EBA 100%);color:#fff;padding:45px 24px;border-radius:8px;text-align:center;margin:32px 0 0;}
+.column-contact-block figure{background:#fff;width:40%;max-width:300px;min-width:180px;margin:0 auto;padding:9px;border-radius:8px;}
+.column-contact-block img{display:block;width:100%;height:auto;margin:0;border-radius:0;}
+.column-contact-block p{color:#fff;text-align:center;margin:24px 0;}
+.column-contact-block p:not(.btn-gra){font-size:20px;font-weight:700;line-height:1.5;}
 </style><h1 style="font-size:32px; font-weight:700; margin:24px 0 16px; padding-bottom:10px; border-bottom:1px solid #eaeef2; line-height:1.3;">申し送りの電子化とは？メリット・費用・進め方を解説</h1>
 <p style="margin:14px 0; line-height:1.7;">申し送りの電子化とは、口頭や紙で行っていた引き継ぎを介護記録システムなどで記録・即時共有し、誰でも同じ情報を参照できる状態にすることです。介護現場では記録の電子化が進む一方、申し送りは紙・口頭のまま残り、残業や伝達ミスの一因になっています。この記事では、申し送りを電子化するメリットと費用・補助金、法的な扱い、定着の進め方を厚生労働省などの公的データで整理します。</p>
 <h2 style="font-size:24px; font-weight:600; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid #eaeef2; line-height:1.3;">申し送りの電子化とは？紙・口頭運用との違い</h2>
