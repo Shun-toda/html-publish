@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<title>WordPress 複数ブランド サブディレクトリ SEO記事 投稿</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:title" content="WordPress 複数ブランド サブディレクトリ SEO記事 投稿">
+</head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif; line-height:1.7; color:#1f2328; max-width:820px; margin:0 auto; padding:32px 24px; background:#fff;">
+<h1 style="font-size:32px; font-weight:700; margin:24px 0 16px; padding-bottom:10px; border-bottom:1px solid #eaeef2; line-height:1.3;">WordPress 複数ブランド サブディレクトリ SEO記事 投稿</h1>
+<p style="margin:14px 0; line-height:1.7;"><strong>対象</strong>: 1つのコーポレートサイト用WordPressで、複数ブランドのSEO記事を、ブランドごとのサブディレクトリに<strong>継続的に</strong>（記事を随時追加していく形で）公開・運用していく担当者<br><strong>前提</strong>: サブディレクトリごとに別のWordPressを新規インストールする必要はありません。<strong>既存の1つのWordPressだけで完結できます。</strong></p>
+<hr style="border:none; border-top:1px solid #eaeef2; margin:28px 0;" />
+<h2 style="font-size:24px; font-weight:600; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid #eaeef2; line-height:1.3;">2. 初回セットアップ手順</h2>
+<h3 style="font-size:20px; font-weight:600; margin:24px 0 12px; line-height:1.3;">Step 1: ブランドごとに「カテゴリー」を作成する</h3>
+<p style="margin:14px 0; line-height:1.7;">左メニューの「投稿」→「カテゴリー」を開くと、以下の画面になる。</p>
+<p style="margin:14px 0; line-height:1.7;"><img src="https://shun-toda.github.io/html-publish/2026/07/wordpress-multi-brand-subdirectory-setup/01_category_add.png" alt="カテゴリー追加画面" loading="lazy" style="max-width:100%; height:auto; display:block; margin:16px auto; border-radius:6px;" /><br><em>左メニュー「投稿」配下の「カテゴリー」を開いたところ。「カテゴリーを追加」フォームに「名前」「スラッグ」「親カテゴリー」の入力欄がある。</em></p>
+<ol style="margin:14px 0; padding-left:1.6em; line-height:1.7;">
+<li style="margin:4px 0;">左メニュー「投稿」→「カテゴリー」を開く</li>
+<li style="margin:4px 0;">画面左側「カテゴリーを追加」フォームの**「名前」**にブランドごとに1カテゴリーを作成（例: 「ブランドA」）。この名前がサイト上に表示される</li>
+<li style="margin:4px 0;"><strong>「スラッグ」を半角英数字でブランド名に統一</strong>（例: <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">brandA</code>）。日本語スラッグはURLが意図せずエンコードされるため使わない。スクリーンショットの説明文にもある通り、スラッグは「半角小文字・英数字・ハイフンのみ」が原則</li>
+<li style="margin:4px 0;"><strong>「親カテゴリー」は「なし」のままでよい</strong>（ブランドカテゴリーがそのまま最上位でよい）</li>
+<li style="margin:4px 0;">「カテゴリーを追加」ボタンで保存</li>
+</ol>
+<p style="margin:14px 0; line-height:1.7;"><strong>運用ルール（重要）</strong>: 1記事につき、該当ブランドのカテゴリーを<strong>必ず1つだけ</strong>選ぶ。複数カテゴリーを付けるとURLに出るカテゴリーがアルファベット順で自動決定されてしまい、意図しないサブディレクトリになる。</p>
+<blockquote style="border-left:4px solid #d0d7de; padding:6px 16px; margin:18px 0; color:#57606a; background:#f6f8fa;">
+<p style="margin:14px 0; line-height:1.7;">発展: ブランド内で記事群をさらに分けたい場合（例: <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">brandA/コラム/</code> のような区分）は、スクリーンショットの「親カテゴリー」欄でブランドカテゴリーを選び、子カテゴリーとして追加できる（画面の説明文にある「ジャズ」→「ビバップ」の例と同じ階層構造）。ただし本数が増えるほど設計が複雑になるため、最初はブランド単位のカテゴリーのみで運用を開始し、必要になった時点で追加するのを推奨。</p>
+</blockquote>
+<h3 style="font-size:20px; font-weight:600; margin:24px 0 12px; line-height:1.3;">Step 2: パーマリンク設定を変更する</h3>
+<p style="margin:14px 0; line-height:1.7;">左メニューの「設定」→「パーマリンク」を開くと、以下の画面になる。</p>
+<p style="margin:14px 0; line-height:1.7;"><img src="https://shun-toda.github.io/html-publish/2026/07/wordpress-multi-brand-subdirectory-setup/02_permalink_settings.png" alt="パーマリンク設定画面" loading="lazy" style="max-width:100%; height:auto; display:block; margin:16px auto; border-radius:6px;" /><br><em>「設定」配下の「パーマリンク」画面。「パーマリンク構造」の一番下にある「カスタム構造」を選択し、右側の入力欄に <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">/%category%/%postname%/</code> を入力した状態。画面下部の「利用可能なタグ」から <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">%postname%</code> <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">%category%</code> をクリックして入力することもできる。</em></p>
+<ol style="margin:14px 0; padding-left:1.6em; line-height:1.7;">
+<li style="margin:4px 0;">管理画面 →「設定」→「パーマリンク」を開く</li>
+<li style="margin:4px 0;">「パーマリンク構造」の選択肢のうち、一番下の**「カスタム構造」のラジオボタンを選択**する（「投稿名」等、他の選択肢を選んだままだとカスタム構造の入力欄は反映されない）</li>
+<li style="margin:4px 0;">右側の入力欄に <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">/%category%/%postname%/</code> を入力する（画面下の「利用可能なタグ」ボタンから <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">%category%</code> → <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">%postname%</code> の順にクリックして入力してもよい）</li>
+<li style="margin:4px 0;">画面下部の「変更を保存」ボタンをクリックする<ul style="margin:14px 0; padding-left:1.6em; line-height:1.7;">
+<li style="margin:4px 0;">※既にサイトが稼働中で既存記事のURLがこの操作で変わる場合は、保存前に必ず「7. 既存サイトへの影響」を確認する</li>
+</ul>
+</li>
+<li style="margin:4px 0;">保存後、サーバーの <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">.htaccess</code> が書き込み不可の場合は画面に表示されるmod_rewriteルールを手動で <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">.htaccess</code> に貼り付ける（レンタルサーバーでは通常自動書き込みされる）</li>
+</ol>
+<p style="margin:14px 0; line-height:1.7;">これで <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">corp-site.com/brandA/</code> 配下に記事を継続的に追加できる状態になる（スクリーンショットの例では <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">https://yomite.co.jp/brandA/postname/</code> のような形になる）。</p>
+<h3 style="font-size:20px; font-weight:600; margin:24px 0 12px; line-height:1.3;">Step 3（任意）: <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">/category/</code> の除去</h3>
+<p style="margin:14px 0; line-height:1.7;">カテゴリー一覧URL（<code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">/category/brandA/</code>）から <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">/category/</code> を消したい場合は、無料プラグイン「Remove Category URL」を有効化するだけで解決する（Rank Math SEOには同等設定あり）。ブランド一覧ページも <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">corp-site.com/brandA/</code> として使いたい場合はこの設定を行う。</p>
+<hr style="border:none; border-top:1px solid #eaeef2; margin:28px 0;" />
+<h2 style="font-size:24px; font-weight:600; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid #eaeef2; line-height:1.3;">3. 記事を1本追加するたびの標準オペレーション（継続運用の本体）</h2>
+<p style="margin:14px 0; line-height:1.7;">初回セットアップ後は、代理店からHTMLが1本納品されるたびに以下を繰り返す。</p>
+<ol style="margin:14px 0; padding-left:1.6em; line-height:1.7;">
+<li style="margin:4px 0;">**「投稿」→「新規追加」**でタイトルを入力（記事タイトル）</li>
+<li style="margin:4px 0;">右サイドバーの「<strong>カテゴリー</strong>」で該当ブランドのカテゴリーを1つだけチェック（他ブランドのカテゴリーが誤ってチェックされていないか確認）</li>
+<li style="margin:4px 0;">右サイドバーの「<strong>パーマリンク</strong>」（スラッグ）を記事内容に合わせて英数字で設定（例: <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">about-service</code>）</li>
+<li style="margin:4px 0;">本文にHTMLを反映する</li>
+<li style="margin:4px 0;">SEOプラグイン（Yoast SEO / Rank Math等）の個別設定欄で、タイトルタグ・メタディスクリプション・アイキャッチ画像を設定</li>
+<li style="margin:4px 0;">同ブランド内の関連する既存記事へ本文中または関連記事欄で内部リンクを追加する（カニバリ防止と回遊率向上のため）</li>
+<li style="margin:4px 0;">画面右上の「プレビュー」でPC・スマホ両方のレイアウト崩れを確認</li>
+<li style="margin:4px 0;">「公開」（公開日時は編集カレンダーに合わせて予約投稿も可）</li>
+<li style="margin:4px 0;">公開後、Google Search Consoleの「URL検査」からインデックス登録をリクエストする</li>
+</ol>
+<p style="margin:14px 0; line-height:1.7;">保存すると自動的に <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">corp-site.com/brandA/about-service/</code> のようなURLになる。同じブランドの記事一覧・アーカイブ・RSSは、Step 3（任意）の設定次第で <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">corp-site.com/brandA/</code> （または <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">corp-site.com/category/brandA/</code>）に自動生成される。</p>
+<hr style="border:none; border-top:1px solid #eaeef2; margin:28px 0;" />
+<h2 style="font-size:24px; font-weight:600; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid #eaeef2; line-height:1.3;">4. 注意点</h2>
+<ul style="margin:14px 0; padding-left:1.6em; line-height:1.7;">
+<li style="margin:4px 0;"><strong>XMLサイトマップの確認</strong>: SEOプラグイン（Yoast/Rank Math等）は新規投稿の公開時に自動でサイトマップを更新するが、公開後は <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">corp-site.com/sitemap.xml</code> に反映されているか定期的に確認する</li>
+</ul>
+<hr style="border:none; border-top:1px solid #eaeef2; margin:28px 0;" />
+<h2 style="font-size:24px; font-weight:600; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid #eaeef2; line-height:1.3;">5. 既存サイトへの影響・注意</h2>
+<p style="margin:14px 0; line-height:1.7;">固定ページ方式との比較としても、投稿＋カテゴリー方式は<strong>既にサイトに投稿・カテゴリーが存在する場合、パーマリンク構造の変更が全記事のURLに影響する</strong>という重い注意点がある。</p>
+<ul style="margin:14px 0; padding-left:1.6em; line-height:1.7;">
+<li style="margin:4px 0;">パーマリンク設定を <code style="background:#f6f8fa; padding:2px 6px; border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:0.92em;">/%category%/%postname%/</code> に変更すると、既存の全投稿のURLが変わる可能性がある</li>
+<li style="margin:4px 0;">変更前に必ず現状のURL一覧をエクスポートしてバックアップする</li>
+<li style="margin:4px 0;">変更後は301リダイレクトの設計が必須（プラグイン「Redirection」等を使用）</li>
+<li style="margin:4px 0;">検索エンジンに再クロールされインデックスが安定するまで一時的に順位・流入が変動する可能性があるため、変更作業は可能であればアクセスの少ない曜日・時間帯に行う</li>
+<li style="margin:4px 0;">新規サイト、または対象ブランドがまだ記事を持たない状態からの導入であれば、この章の影響は基本的に発生しない</li>
+</ul>
+<hr style="border:none; border-top:1px solid #eaeef2; margin:28px 0;" />
+</body>
+</html>
