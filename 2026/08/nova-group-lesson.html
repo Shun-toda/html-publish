@@ -21,9 +21,13 @@
 .wp-block-group .has-text-align-center{margin:10px 0;}
 /* Gutenberg image blocks: a WordPress theme centers .aligncenter figures; standalone
    HTML lacks that rule so they render left-aligned. Inline styles on a figure
-   (e.g. style="text-align:left") still win over these rules. */
+   (e.g. style="text-align:left") still win over these rules.
+   max-width:100% keeps banner-CTA images (gutenberg-cta-template.md pattern: no width
+   attr / no inline style) inside the 820px article container.
+   Caption values (12px / #4D4D4D) follow the figcaption inline style already used in
+   published articles (NOVA etc., 2026-08). */
 .wp-block-image.aligncenter{text-align:center;margin-left:auto;margin-right:auto;}
-.wp-block-image.aligncenter img{display:inline-block;}
+.wp-block-image.aligncenter img{display:inline-block;max-width:100%;height:auto;}
 .wp-block-image .wp-element-caption{font-size:12px;color:#4D4D4D;margin-top:6px;}
 /* WillGroup / carebase theme CTA (.btn-gra) for standalone HTML rendering.
    Some articles use the theme's <p class="btn-gra ..."><a>…</a></p> CTA instead of a
