@@ -168,6 +168,18 @@
     background: var(--surface-alt); border: 1px solid var(--line);
     border-radius: 4px; padding: 1px 6px; word-break: break-all;
   }
+  .tgt { margin: 10px 0 4px; border: 1px solid var(--hold); border-radius: 8px; overflow: hidden; }
+  .tgt-h { background: var(--hold-wash); color: var(--hold); font-weight: 700; font-size: 12.5px; padding: 7px 14px; }
+  .tgt-t { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--surface); }
+  .tgt-t td { padding: 8px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  .tgt-n { width: 1.8em; text-align: center; font-weight: 700; color: var(--hold); font-variant-numeric: tabular-nums; }
+  .tgt-s { color: var(--ink-soft); font-size: 12.5px; }
+  .why { background: var(--accent-wash); border: 1px solid var(--accent-soft); border-radius: 10px; padding: 14px 18px; margin: 0 0 20px; font-size: 13px; line-height: 1.75; }
+  .why strong { color: var(--accent); }
+  .why ol { margin: 8px 0; padding-left: 1.4em; }
+  .why li { margin-bottom: 4px; }
+  .why li strong { color: var(--ink); }
+
   /* ---- 口コミ原文 ---- */
   h4 { font-size: 14.5px; font-weight: 700; margin: 28px 0 4px; }
   .rv-g { margin-bottom: 8px; }
@@ -354,19 +366,32 @@
   <div class="fix-card">
     <div class="head">#1 口コミの記事化可否 <span class="pill hold">承認の必須要件</span></div>
     <ul class="plain" style="margin-bottom:0">
-      <li><strong>お願いしたいこと</strong> — 貴社公式サイト「みんなのクチコミ」から毛穴に言及していた15件を集計に使用しています。この使用の可否と、修正・差し替えのご要望をご教示ください。</li>
+      <li><strong>お願いしたいこと</strong> — 記事が<strong>内容を使っている次の5点</strong>について、この形で掲載してよいかをご判断ください。他の投稿は件数に算入しているだけなので、個別のご判断は不要です。</li>
+    </ul>
+    <div class="tgt">
+      <div class="tgt-h">重点的にご確認いただきたい5点</div>
+      <table class="tgt-t">
+        <tr><td class="tgt-n">1</td><td><strong>★4.22（n=677）の引用</strong><br><span class="tgt-s">クリームモイスチャライザーの公式レビュー平均値を、FAQで2026年8月時点の値として引用しています。注釈形式は規定 §1-6 の指定どおりですが、引用そのものの可否をご確認ください。</span></td></tr>
+        <tr><td class="tgt-n">2</td><td><strong>「塗った後の膜のような感触とべたつき」という記述</strong><br><span class="tgt-s">記事本文とFAQの2箇所にあります。公式クチコミ <code>O-223</code>・<code>O-239</code>・<code>O-255</code>（クリームへの投稿3件）の内容を要約したものです。原文の引用ではありませんが、内容に基づく記述にあたります。</span></td></tr>
+        <tr><td class="tgt-n">3</td><td><strong>「角栓や黒ずみが気になっていた方からの、変わらなかったという記述」</strong><br><span class="tgt-s">洗顔料の項にあります。公式クチコミ <code>O-47</code> を含む3件の内容を要約したものです。</span></td></tr>
+        <tr><td class="tgt-n">4</td><td><strong>分類そのものの妥当性</strong><br><span class="tgt-s">上記1〜3の前提として、各投稿を「目立つようになった／目立ちにくくなった／体験ではない」に振り分けた判断が適切かどうか。詳細は確認事項#3です。</span></td></tr>
+        <tr><td class="tgt-n">5</td><td><strong>集計に含めてよい投稿か</strong><br><span class="tgt-s">旧品への投稿など、除外すべきものが混ざっていないか。詳細は確認事項#4です。</span></td></tr>
+      </table>
+    </div>
+    <ul class="plain" style="margin-bottom:0">
       <li><strong>根拠となる規定</strong> — 広告規定 §1-4「元口コミのスクリーンショットを添えてオルビスに記事確認依頼を行い、お戻しを反映または差し替えること」</li>
-      <li><strong>使用のしかた</strong> — 記事本文に<strong>原文の直接引用は一切ありません</strong>。すべて「852件中◯件」という件数への集約のみで、投稿者名・表示名も掲載していません。</li>
-      <li><strong>判断の材料</strong> — <a href="#reviews15">対象の15件すべての原文を下記に掲載</a>しています（分類・評価・投稿日・投稿ページへのリンク付き）。本資料だけでご判断いただけます。</li>
-      <li><strong>ご回答後</strong> — 使用不可のご判断があった口コミは集計から除外し、件数を再計算のうえ本文を修正します。</li>
+      <li><strong>使用のしかた</strong> — 記事本文に<strong>原文の直接引用は一切ありません</strong>。投稿者名・表示名も掲載していません。上記2・3は原文の要約、それ以外は「852件中◯件」という件数への集約です。</li>
+      <li><strong>判断の材料</strong> — <a href="#reviews15">対象15件の原文を下記に掲載</a>しています。うち<strong>①の4件が上記2・3の根拠</strong>で、残る11件は件数への寄与のみです（分類の裏づけとして併載）。</li>
+      <li><strong>ご回答後</strong> — 掲載不可のご判断があった箇所は記述を削除し、対象の投稿は集計から除外して件数を再計算のうえ本文を修正します。</li>
     </ul>
   </div>
 
 <h3 id="reviews15">確認対象の口コミ全15件（原文そのまま）</h3>
-<p class="lede">貴社公式サイト「みんなのクチコミ」のうち、毛穴に言及していた15件です。<strong>投稿本文は一字一句変えずに掲載</strong>しています（取得日 2026年8月4日）。記事本文にはこれらの原文は一切引用しておらず、下記の分類にもとづく<strong>件数のみ</strong>を使用しています。投稿者名・表示名は記事にも本資料にも掲載していません。</p>
+<p class="lede">貴社公式サイト「みんなのクチコミ」のうち、毛穴に言及していた15件です（取得日 2026年8月4日）。<strong>投稿本文は一字一句変えずに掲載</strong>しています。</p>
+<div class="why"><strong>原文を掲載している理由</strong><br>記事に載せているのは「852件中◯件」という<strong>件数</strong>で、原文の直接引用はありません。それでも原文を添えているのは、<strong>件数が正しいかどうかは各投稿がその分類に当てはまるかを読まないと検証できない</strong>ためです。<br>とくに<strong>①の4件は、記事本文の記述（「塗った後の膜のような感触とべたつき」「角栓や黒ずみが気になっていた方からの、変わらなかったという記述」）の根拠</strong>にあたるため、確認事項#1で重点的なご判断をお願いしています。②③は件数への寄与のみで、個別のご判断は不要です（分類の裏づけとして併載しています）。<br>投稿者名・表示名は、記事にも本資料にも掲載していません。</div>
 <div class="rv-g">
-<h4>① 毛穴が目立つようになった体験（4件）</h4>
-<p class="rv-gn">記事の中核データです。全収集元の合計「8件」のうち、貴社公式サイト由来の4件がこちらです。</p>
+<h4>① 毛穴が目立つようになった体験（4件）<span class="pill hold" style="margin-left:8px">重点確認</span></h4>
+<p class="rv-gn">全収集元の合計「8件」のうち、貴社公式サイト由来の4件です。<strong>件数に算入されるだけでなく、記事本文の記述の根拠になっています</strong> — クリームへの3件（O-223・O-239・O-255）が「塗った後の膜のような感触とべたつき」、洗顔料への1件（O-47）が「角栓や黒ずみが気になっていた方からの、変わらなかったという記述」に対応します（いずれも要約で、原文の引用ではありません）。</p>
 <div class="rv">
 <div class="rv-h">
 <span class="rv-id">O-47</span>
@@ -421,8 +446,8 @@
 </div>
 </div>
 <div class="rv-g">
-<h4>② 毛穴が目立ちにくくなった体験（9件）</h4>
-<p class="rv-gn">全収集元の合計「15件」のうち、貴社公式サイト由来の9件です。効果の方向を含む集計値を掲載してよいかは、確認事項#2（薬事）でもご判断をお願いしています。</p>
+<h4>② 毛穴が目立ちにくくなった体験（9件）<span class="pill info" style="margin-left:8px">参考・件数寄与のみ</span></h4>
+<p class="rv-gn">全収集元の合計「15件」のうち、貴社公式サイト由来の9件です。<strong>記事では件数に算入しているのみ</strong>で、個別のご判断は不要です（分類の裏づけとして掲載しています）。なお、効果の方向を含む集計値そのものを掲載してよいかは、確認事項#2（薬事）でご判断をお願いしています。</p>
 <div class="rv">
 <div class="rv-h">
 <span class="rv-id">O-61</span>
@@ -626,8 +651,8 @@
 </div>
 </div>
 <div class="rv-g">
-<h4>③ 体験ではないと判定した投稿（2件）</h4>
-<p class="rv-gn">「毛穴」の語は含むものの、使用後のご自身の毛穴の変化が書かれていないと判断した投稿です。「体験ではない23件」の一部として計上しています。この判定の妥当性は確認事項#3でご判断をお願いしています。</p>
+<h4>③ 体験ではないと判定した投稿（2件）<span class="pill info" style="margin-left:8px">参考・件数寄与のみ</span></h4>
+<p class="rv-gn">「毛穴」の語は含むものの、使用後のご自身の毛穴の変化が書かれていないと判断した投稿です。「体験ではない23件」の一部として<strong>件数に算入しているのみ</strong>で、個別のご判断は不要です。この判定の妥当性は確認事項#3でまとめてご判断をお願いしています。</p>
 <div class="rv">
 <div class="rv-h">
 <span class="rv-id">O-7</span>
@@ -683,10 +708,6 @@
     </ul>
   </div>
 
-  <div class="fix-card">
-    <div class="head">参考 公式レビュー表示値★4.22の引用形式 <span class="pill info">念のための確認</span></div>
-    クリームモイスチャライザーの公式レビュー平均★4.22（n=677）を、2026年8月4日時点の値として引用しています。社内監査では規定の指定形式に適合と判定していますが、引用そのものの可否をあわせてご確認いただけますと安心です。<strong>公開ブロックには該当しません。</strong>
-  </div>
 
 
   <h2><span class="no">7</span>記事品質の主要指標</h2>
