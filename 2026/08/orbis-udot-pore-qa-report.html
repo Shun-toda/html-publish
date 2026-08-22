@@ -1,0 +1,416 @@
+<meta name="robots" content="noindex, nofollow">
+<title>ユードット毛穴記事 品質検証レポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --surface-alt: #f4f2ee;
+    --ink: #2f3336;
+    --ink-soft: #666d71;
+    --line: #e2ded6;
+    --accent: #1f6f6b;
+    --accent-soft: #bcdedb;
+    --accent-wash: #edf6f5;
+    --pass: #2f7d57;
+    --pass-wash: #ecf5ef;
+    --hold: #a8501f;
+    --hold-wash: #fbf0e8;
+    --warn: #a06a1f;
+    --warn-wash: #faf3e4;
+    --serif: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1c2022;
+      --surface: #252a2c;
+      --surface-alt: #2c3235;
+      --ink: #e6e9ea;
+      --ink-soft: #a6afb2;
+      --line: #3d4548;
+      --accent: #6fc4be;
+      --accent-soft: #2d5b58;
+      --accent-wash: #273837;
+      --pass: #7fc9a2;
+      --pass-wash: #2b3a32;
+      --hold: #e59a6a;
+      --hold-wash: #3b2b22;
+      --warn: #dcae62;
+      --warn-wash: #3e3525;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1c2022;
+    --surface: #252a2c;
+    --surface-alt: #2c3235;
+    --ink: #e6e9ea;
+    --ink-soft: #a6afb2;
+    --line: #3d4548;
+    --accent: #6fc4be;
+    --accent-soft: #2d5b58;
+    --accent-wash: #273837;
+    --pass: #7fc9a2;
+    --pass-wash: #2b3a32;
+    --hold: #e59a6a;
+    --hold-wash: #3b2b22;
+    --warn: #dcae62;
+    --warn-wash: #3e3525;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .page { max-width: 880px; margin: 0 auto; padding: 48px 28px 80px; }
+
+  .eyebrow {
+    font-size: 12px; letter-spacing: .18em; color: var(--accent);
+    font-weight: 700; text-transform: uppercase; margin-bottom: 10px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 700; font-size: 30px;
+    line-height: 1.4; margin: 0 0 6px; text-wrap: balance;
+  }
+  .subtitle { color: var(--ink-soft); font-size: 14px; margin: 0 0 24px; }
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px; background: var(--line); border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden; margin-bottom: 28px;
+  }
+  .meta-cell { background: var(--surface); padding: 12px 16px; }
+  .meta-cell dt { font-size: 11px; letter-spacing: .08em; color: var(--ink-soft); margin: 0 0 2px; }
+  .meta-cell dd { margin: 0; font-weight: 700; font-size: 14px; }
+
+  .verdict {
+    display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
+    background: var(--hold-wash); border: 1px solid var(--hold);
+    border-radius: 12px; padding: 20px 24px; margin-bottom: 14px;
+  }
+  .verdict .mark {
+    font-family: var(--serif); font-size: 25px; font-weight: 700; color: var(--hold);
+    white-space: nowrap;
+  }
+  .verdict p { margin: 0; font-size: 14px; flex: 1; min-width: 260px; }
+  .note-banner {
+    background: var(--pass-wash); border: 1px solid var(--pass);
+    border-radius: 12px; padding: 14px 24px; margin-bottom: 36px; font-size: 14px;
+  }
+  .note-banner strong { color: var(--pass); }
+
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 44px;
+  }
+  @media (max-width: 620px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  .kpi {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px 12px;
+  }
+  .kpi .num {
+    font-family: var(--serif); font-size: 26px; font-weight: 700;
+    font-variant-numeric: tabular-nums; line-height: 1.2; color: var(--accent);
+  }
+  .kpi .num.ok { color: var(--pass); }
+  .kpi .num.hold { color: var(--hold); }
+  .kpi .label { font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin-top: 2px; }
+
+  h2 {
+    font-family: var(--serif); font-size: 21px; font-weight: 600;
+    margin: 48px 0 6px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-soft); text-wrap: balance;
+  }
+  h2 .no { color: var(--accent); margin-right: 10px; font-variant-numeric: tabular-nums; }
+  .lede { color: var(--ink-soft); font-size: 13.5px; margin: 0 0 18px; }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 26px 0 8px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--surface); }
+  th, td { padding: 10px 14px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+  thead th {
+    border-top: none; background: var(--surface-alt); font-size: 12px;
+    letter-spacing: .06em; color: var(--ink-soft); white-space: nowrap;
+  }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .pill {
+    display: inline-block; padding: 1px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; white-space: nowrap;
+  }
+  .pill.pass { background: var(--pass-wash); color: var(--pass); border: 1px solid var(--pass); }
+  .pill.hold { background: var(--hold-wash); color: var(--hold); border: 1px solid var(--hold); }
+  .pill.warn { background: var(--warn-wash); color: var(--warn); border: 1px solid var(--warn); }
+  .pill.info { background: var(--accent-wash); color: var(--accent); border: 1px solid var(--accent-soft); }
+
+  .fix-card {
+    background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 14px 18px; margin-bottom: 12px; font-size: 13.5px;
+  }
+  .fix-card .head { font-weight: 700; margin-bottom: 4px; }
+  .ba { display: grid; gap: 4px; margin-top: 6px; }
+  .ba .b, .ba .a { padding: 6px 12px; border-radius: 6px; font-size: 13px; }
+  .ba .b { background: var(--surface-alt); color: var(--ink-soft); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--ink-soft) 55%, transparent); }
+  .ba .a { background: var(--pass-wash); }
+  .ba .a::before { content: "改善後　"; font-weight: 700; color: var(--pass); font-size: 11px; }
+  .ba .b::before { content: "改善前　"; font-weight: 700; font-size: 11px; text-decoration: none; display: inline-block; }
+
+  ul.plain { padding-left: 1.3em; margin: 8px 0; }
+  ul.plain li { margin-bottom: 5px; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  code {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12px;
+    background: var(--surface-alt); border: 1px solid var(--line);
+    border-radius: 4px; padding: 1px 6px; word-break: break-all;
+  }
+  .footnote { color: var(--ink-soft); font-size: 12.5px; margin-top: 10px; }
+  footer {
+    margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line);
+    color: var(--ink-soft); font-size: 12px;
+  }
+</style>
+
+<div class="page">
+  <div class="eyebrow">Quality Assurance Report</div>
+  <h1>SEO記事 品質検証サマリー<br>オルビスユー ドット「毛穴が目立つ」</h1>
+  <p class="subtitle">オウンドメディア記事｜検証実施: 2026年8月6日〜8月16日｜作成: YOUFIRST</p>
+
+  <dl class="meta-grid">
+    <div class="meta-cell"><dt>記事タイトル</dt><dd>オルビスユー ドットは毛穴が目立つ？口コミ859件を分類して検証</dd></div>
+    <div class="meta-cell"><dt>対策キーワード</dt><dd>オルビスユードット 毛穴 目立つ</dd></div>
+    <div class="meta-cell"><dt>記事タイプ / 配信先</dt><dd>Know型（口コミ集計による検証）/ WordPress</dd></div>
+    <div class="meta-cell"><dt>本文文字数</dt><dd>7,045字（目標 3,700〜5,500字を超過）</dd></div>
+    <div class="meta-cell"><dt>薬機法カテゴリ</dt><dd>医薬部外品</dd></div>
+    <div class="meta-cell"><dt>掲載画像</dt><dd>H2図解 4点＋公式画像 2点</dd></div>
+  </dl>
+
+  <div class="verdict">
+    <div class="mark">総合判定：<br>ご承認待ち</div>
+    <p><strong>制作側の作業は完了しており、あとは貴社のご承認をいただくのみです。</strong>貴社広告規定 §1-4 は「口コミを記事に使う場合、事前に分類結果を提出してオルビス様の可否回答を得ること」を求めており、この回答が未受領のため公開できない状態です。ご確認いただきたい内容は<a href="#confirm">第6章</a>に、そのままご判断いただける形でまとめています。</p>
+  </div>
+  <div class="note-banner">
+    <strong>機械検証・表現チェックはすべてクリアしています。</strong>薬機法NG表現0件、広告規定284項目の最終NG 0件、出典URLの真NG 0件。残っているのは「記事の書き方の不備」ではなく、<strong>記事の書き換えでは解消できない承認手続き</strong>だけです。ご承認をいただいた時点で公開可能になります。
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="num hold">1件</div><div class="label">要クライアント承認<br>（公開ブロック要因）</div></div>
+    <div class="kpi"><div class="num hold">4件</div><div class="label">要ご確認<br>（薬事・事実確認）</div></div>
+    <div class="kpi"><div class="num">284項目</div><div class="label">広告規定チェック<br>全項目判定・最終NG 0</div></div>
+    <div class="kpi"><div class="num">244項目</div><div class="label">第三者独立再監査<br>違反8事象→1事象へ縮小</div></div>
+    <div class="kpi"><div class="num ok">14/14</div><div class="label">検証対象の主張すべてで<br>一次資料・原データに到達</div></div>
+    <div class="kpi"><div class="num ok">0件</div><div class="label">薬機法NG表現<br>（error / warn とも0）</div></div>
+  </div>
+
+  <h2><span class="no">1</span>この記事の構成と検証の考え方</h2>
+  <p class="lede">「毛穴が目立つ」という検索意図に対し、印象論ではなく口コミの実数集計で答える設計の記事です。集計そのものが記事の根拠になるため、集計の正確性を通常より厚く検証しています。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>項目</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>収集した口コミ</td><td class="num">859件（うちモール系7件を除外し、集計対象は852件）</td></tr>
+      <tr><td>毛穴に言及した投稿</td><td class="num">46件（集計対象の5.4%）</td></tr>
+      <tr><td>実体験だった投稿</td><td class="num">23件（残る23件は使用前の期待・伝聞など体験ではない内容）</td></tr>
+      <tr><td>毛穴が目立つようになった体験</td><td class="num">8件（うち7件が混合肌・脂性肌。2件は同一本文のため実質7名）</td></tr>
+      <tr><td>目立ちにくくなった体験</td><td class="num">15件（目立つようになった体験の約2倍）</td></tr>
+    </tbody>
+  </table></div>
+  <p class="footnote">※ 記事本文では口コミの原文引用は行わず、件数の集計結果のみを扱っています（体験談の掲載・引用は0件）。</p>
+
+  <h2><span class="no">2</span>検証体制の全体像</h2>
+  <p class="lede">執筆とは独立した自動検証パイプラインに加え、執筆・調整に関与していない第三者エージェントによる再監査を重ねた二層構成で検証しています。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>工程</th><th>検証内容</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td>集計データの検証</td><td>本文の数値主張を口コミ原データに突き合わせ、件数・内訳・重複投稿まで再計算して照合</td><td><span class="pill pass">全件一致</span></td></tr>
+      <tr><td>出典URL検証</td><td>外部URL 7件の実在・記載内容との一致・運営主体の信頼性を確認</td><td><span class="pill pass">真NG 0件</span></td></tr>
+      <tr><td>主張の分解検証</td><td>本文の主張を18件に分解し、意見4件を除く14件すべてで一次資料・原データへの到達を確認</td><td><span class="pill pass">14/14 到達</span></td></tr>
+      <tr><td>広告規定 明細チェック</td><td>貴社支給の広告規定チェックリスト284項目を全行判定（省略なし）。<a href="https://shun-toda.github.io/html-publish/2026/08/orbis-udot-pore-ad-compliance-284.html" target="_blank" rel="noopener">全項目の判定一覧はこちら</a></td><td><span class="pill pass">最終NG 0</span></td></tr>
+      <tr><td>第三者独立再監査</td><td>執筆・調整に未関与の第三者による244項目の再監査＋H2画像4点の目視検査。指摘は<a href="#confirm">貴社のご判断が必要な5件</a>を除きすべて解消済み</td><td><span class="pill hold">要クライアント承認</span></td></tr>
+      <tr><td>薬機法 表現チェック</td><td>医薬部外品カテゴリの禁止・要注意表現を機械検査</td><td><span class="pill pass">error 0 / warn 0</span></td></tr>
+      <tr><td>検索意図 適合監査</td><td>検索者の疑問に本文が直接回答しているか（主意図比率82%・必須回答6/6）</td><td><span class="pill pass">適合</span></td></tr>
+      <tr><td>構成契約 照合</td><td>承認済み記事構成との一致（H2 7件・図版4件・情報利得5件・必須回答6件）</td><td><span class="pill pass">設計どおり</span></td></tr>
+      <tr><td>文章品質・AI文体検査</td><td>AI特有の定型句・不自然な文体・架空データ混入の検査</td><td><span class="pill pass">検出 0</span></td></tr>
+      <tr><td>画像品質検査</td><td>H2図解4点の文字化け・図中数値と本文の整合・出典表記</td><td><span class="pill pass">全4点 OK</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2><span class="no">3</span>出典・エビデンス検証</h2>
+  <p class="lede">外部URLはリンク切れの有無だけでなく、「本文の記載がリンク先に実在するか」まで照合しています。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>出典</th><th>役割</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>厚生労働省「化粧品の効能の範囲」通知（平成23年7月21日）</td><td>「化粧品の効能56項目に毛穴を対象とした項目はない」という線引きの根拠</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>オルビス公式 よくあるご質問（毛穴の分類）</td><td>毛穴を「皮脂毛穴」「年齢毛穴」に分ける公式見解と、年齢毛穴へのシリーズ案内</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>オルビスユー ドット クリームモイスチャライザー 商品ページ</td><td>密着させる設計（体温で膜を形成する成分）の裏付け・公式レビュー平均★4.22（n=677）</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>オルビスユー ドット ウォッシュ 商品ページ</td><td>洗顔料の毛穴に関わる表示が「洗浄による物理的効果」の範囲であることの確認</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>オルビスユー ドット シリーズページ</td><td>シリーズの位置づけ・第三者評価（ベストコスメ受賞）</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>7日間特別セット LP</td><td>CTA遷移先・価格（980円税込・初めての方限定・30日返品）</td><td><span class="pill pass">OK</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul class="plain">
+    <li>検証した外部URLは<strong>7件</strong>。自動検証で3件が「データ未確認」と出ましたが、いずれも照合の期待値指定によるもの（偽陰性）と判定し、<strong>真のNGは0件</strong>です。</li>
+    <li>口コミの件数主張はすべて原データに遡って再計算し、本文の数値と一致することを確認しています。</li>
+    <li>架空の体験談・架空データ・架空口コミ: <strong>0件</strong>。競合他社名の言及: 0件。</li>
+  </ul>
+
+  <h2><span class="no">4</span>広告規定・薬機法チェック</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>チェック</th><th>判定内訳</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td>広告規定 明細チェック（284項目・全行判定）<br><a href="https://shun-toda.github.io/html-publish/2026/08/orbis-udot-pore-ad-compliance-284.html" target="_blank" rel="noopener">→ 全284項目の判定一覧を開く</a></td><td class="num">該当なし 255 ／ 適合 20 ／ NG検出→修正済 3 ／ 適用外 6</td><td><span class="pill pass">最終NG 0</span></td></tr>
+      <tr><td>第三者独立再監査（244項目）</td><td>当初の違反8事象のうち<strong>7事象は記事を修正して解消</strong>。残る1事象は口コミ記事化の承認手続きで、記事の書き換えでは解消できません（<a href="#confirm">第6章 #1</a>）</td><td><span class="pill hold">要クライアント承認</span></td></tr>
+      <tr><td>薬機法 表現チェック（医薬部外品基準）</td><td class="num">error 0 ／ warn 0 ／ 承認済み注記 1</td><td><span class="pill pass">クリア</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>効能表現の扱い</h3>
+  <ul class="plain">
+    <li>効能に関わる語には規定どおり注釈を付与しています — 美白（メラニンの生成を抑え、シミ・ソバカスを防ぐ）／エイジングケア（年齢に応じたお手入れ）／マイルドピーリング（洗浄による物理的効果）／蓄積した角層。被注釈語と注釈は1対1で対応しています。</li>
+    <li>薬機法上リスクの高い語（ターンオーバー・バリア機能・肌の奥・毛穴の奥・浸透・国内唯一・若返り系など）は<strong>全て0件</strong>。毛穴を扱う記事でありながら「毛穴の奥」を回避しています。</li>
+    <li>本文中で「化粧品の効能56項目に毛穴という語はない」と自ら線引きを明示し、製品の効能として毛穴に作用するとは述べていません。</li>
+  </ul>
+
+  <h2><span class="no">5</span>再監査で検出し、修正した内容</h2>
+  <p class="lede">第三者再監査で検出された指摘のうち、記事側の表現で解消できるものはすべて修正済みです（違反8事象 → 1事象）。</p>
+  <div class="fix-card">
+    <div class="head">価格の税込表記がない <span class="pill info">景表法・総額表示義務</span></div>
+    記事内で価格が出る全箇所を税込表記に統一。
+    <div class="ba">
+      <span class="b">＼ 特別セット7日間分980円 ／</span>
+      <span class="a">＼ 特別セット7日間分980円（税込）／</span>
+    </div>
+  </div>
+  <div class="fix-card">
+    <div class="head">「%OFF」に分母・換算根拠がない <span class="pill info">景表法・有利誤認</span></div>
+    割引率の表示をやめ、実額表示へ置換。
+    <div class="ba">
+      <span class="b">＼ 約44%OFF・30日返品OK ／</span>
+      <span class="a">＼ 7日間分980円（税込）・30日返品OK ／</span>
+    </div>
+  </div>
+  <div class="fix-card">
+    <div class="head">オファーに対象者条件の明示がない <span class="pill info">景表法・有利誤認</span></div>
+    オルビス会員は初回限定セットを申し込めないため、訴求箇所すべてに対象者条件を併記（2箇所）。
+    <div class="ba">
+      <span class="b">送料無料でお届けし、使用感をご自身の肌で確かめられます。</span>
+      <span class="a">オルビス初めての方限定のセットを送料無料でお届けし、使用感をご自身の肌で確かめられます。</span>
+    </div>
+  </div>
+  <div class="fix-card">
+    <div class="head">その他の修正 <span class="pill info">薬機法・表記</span></div>
+    <ul class="plain" style="margin-bottom:0">
+      <li>「温度応答性弾力ポリマー」の成分名表記を規定に沿って調整</li>
+      <li>見出し・本文の「否定的な声」等の評価語を、集計事実に即した中立表現（「目立つようになった体験」）へ変更</li>
+      <li>受賞表記から媒体名を削除（規定 NG-037 に準拠）</li>
+    </ul>
+  </div>
+
+  <h2 id="confirm"><span class="no">6</span>ご承認にあたり確認をお願いしたい事項（5件）</h2>
+  <p class="lede">貴社広告規定に基づき、記事の書き換えでは解消できず貴社のご判断が必要な項目です。#1がご承認の必須要件で、#2〜#5はあわせてご判断をお願いしたい項目です。各項目とも「何をお願いしたいか」「ご回答後にどう反映するか」を明記しています。</p>
+
+  <h3>承認手続きの全体像</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ステップ</th><th>内容</th><th>状況</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>口コミの分類結果一覧・原文スクリーンショット・記事校正稿を貴社へ提出</td><td><span class="pill pass">資料準備完了</span></td></tr>
+      <tr><td class="num">2</td><td>貴社にて記事化の可否をご判断（下記5項目）</td><td><span class="pill hold">ご回答待ち</span></td></tr>
+      <tr><td class="num">3</td><td>お戻し内容を、該当箇所の修正または当該口コミの差し替えという形で反映</td><td><span class="pill info">回答後に実施</span></td></tr>
+      <tr><td class="num">4</td><td>反映後の原稿を再送し、最終ご承認をいただいてから公開</td><td><span class="pill info">回答後に実施</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="footnote">ご提出できる資料: 口コミ分類結果一覧（852件・R-ID／原文／記事内の使用箇所つき）／公式クチコミの原文スクリーンショット15点／記事校正稿。ご要望に応じてそのままお送りできる状態です。</p>
+
+  <h3>ご確認いただきたい5項目</h3>
+
+  <div class="fix-card">
+    <div class="head">#1 口コミの記事化可否 <span class="pill hold">承認の必須要件</span></div>
+    <ul class="plain" style="margin-bottom:0">
+      <li><strong>お願いしたいこと</strong> — 貴社公式サイト「みんなのクチコミ」から毛穴に言及していた15件を集計に使用しています。この使用の可否と、修正・差し替えのご要望をご教示ください。</li>
+      <li><strong>根拠となる規定</strong> — 広告規定 §1-4「元口コミのスクリーンショットを添えてオルビスに記事確認依頼を行い、お戻しを反映または差し替えること」</li>
+      <li><strong>使用のしかた</strong> — 記事本文に<strong>原文の直接引用は一切ありません</strong>。すべて「852件中◯件」という件数への集約のみで、投稿者名・表示名も掲載していません。</li>
+      <li><strong>判断の材料</strong> — 全15件について、R-ID・原文・記事内の使用箇所を一覧化し、原文スクリーンショットを添付します。</li>
+      <li><strong>ご回答後</strong> — 使用不可のご判断があった口コミは集計から除外し、件数を再計算のうえ本文を修正します。</li>
+    </ul>
+  </div>
+
+  <div class="fix-card">
+    <div class="head">#2 企画構成そのものの可否（薬事ご担当者様） <span class="pill warn">要ご判断</span></div>
+    <ul class="plain" style="margin-bottom:0">
+      <li><strong>お願いしたいこと</strong> — 「毛穴」を主題に据えた記事構成そのものについて、薬事ご担当者様のご確認をお願いします。</li>
+      <li><strong>なぜ確認が必要か</strong> — 化粧品の効能56項目に「毛穴」を対象とした項目はありません。本記事は個々の表現では効能を主張しておらず、むしろ本文中で「効能に毛穴という語はない」と自ら線引きを明示していますが、記事全体として効能範囲外の事象を扱う構成であるため、単独判断を避けています。</li>
+      <li><strong>制作側で講じている配慮</strong> — 製品が毛穴に作用するとは述べず、公式のよくあるご質問における皮脂毛穴／年齢毛穴の区分の紹介と、口コミ件数の事実提示にとどめています。「毛穴の奥」「浸透」等のリスク語は0件です。</li>
+      <li><strong>ご回答後</strong> — 構成変更のご指示があれば、該当セクションの削除・書き換えで対応します。</li>
+    </ul>
+  </div>
+
+  <div class="fix-card">
+    <div class="head">#3 分類基準と件数の妥当性 <span class="pill warn">要ご承認</span></div>
+    <ul class="plain" style="margin-bottom:0">
+      <li><strong>お願いしたいこと</strong> — 口コミを要約・分類して再構成しているため、分類の基準と各件数についてご承認をお願いします。</li>
+      <li><strong>分類の基準</strong> — ①「毛穴」の語を含むか（46件）→ ②自分の毛穴の変化を書いた実体験か、期待・伝聞などの非体験か（体験23件／非体験23件）→ ③体験のうち毛穴が目立つようになった内容か、目立ちにくくなった内容か（8件／15件）。</li>
+      <li><strong>母数の扱い</strong> — 収集859件のうち、本文と評価の紐付けが取れない楽天7件を除外し、852件を集計対象としています。</li>
+      <li><strong>ご回答後</strong> — 基準の変更をご指示いただいた場合は、再分類・再集計のうえ本文の数値をすべて更新します。</li>
+    </ul>
+  </div>
+
+  <div class="fix-card">
+    <div class="head">#4 ベストコスメ受賞の表記方法 <span class="pill warn">要ご判断</span></div>
+    <ul class="plain" style="margin-bottom:0">
+      <li><strong>お願いしたいこと</strong> — 受賞に触れた記述を残すか、削除するかのご判断をお願いします。</li>
+      <li><strong>なぜ判断が必要か</strong> — 貴社規定は雑誌名の記載を不可としている一方、実績数値には調査主体の明記が求められます。両立できないため、現状は媒体名を伏せた形で記載しています。</li>
+      <li><strong>選択肢</strong> — (a) 媒体名を伏せたまま受賞に触れる（現状）／(b) 受賞の記述自体を削除する／(c) 貴社が許容する表記をご指定いただく。</li>
+      <li><strong>ご回答後</strong> — ご指定の形へ即時修正します。</li>
+    </ul>
+  </div>
+
+  <div class="fix-card">
+    <div class="head">#5 旧品への投稿の混在有無 <span class="pill warn">要情報ご提供</span></div>
+    <ul class="plain" style="margin-bottom:0">
+      <li><strong>お願いしたいこと</strong> — 旧オルビスユー ドットのリニューアル時期をご教示ください。</li>
+      <li><strong>なぜ必要か</strong> — 収集した859件にリニューアル前の製品への投稿が含まれる場合、集計条件に「※旧品への投稿を含む」の注記が必要になります。投稿日から判別するため、リニューアル時期の情報が要ります。</li>
+      <li><strong>ご回答後</strong> — 混在する場合は集計条件に注記を追加します。集計から除外すべきとのご判断であれば、除外して再集計します。</li>
+    </ul>
+  </div>
+
+  <div class="fix-card">
+    <div class="head">参考 公式レビュー表示値★4.22の引用形式 <span class="pill info">念のための確認</span></div>
+    クリームモイスチャライザーの公式レビュー平均★4.22（n=677）を、2026年8月4日時点の値として引用しています。社内監査では規定の指定形式に適合と判定していますが、引用そのものの可否をあわせてご確認いただけますと安心です。<strong>公開ブロックには該当しません。</strong>
+  </div>
+
+
+  <h2><span class="no">7</span>記事品質の主要指標</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>指標</th><th>実測</th><th>基準</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>本文文字数</td><td class="num">7,045字</td><td class="num">3,700〜5,500字</td><td><span class="pill warn">上限超過</span></td></tr>
+      <tr><td>導入文の長さ</td><td class="num">138字</td><td class="num">200字以内</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>検索意図への回答比率</td><td class="num">82%</td><td class="num">50%以上</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>必須回答のカバー</td><td class="num">6/6</td><td>検索者の主要疑問すべてに本文で回答</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>リードの直接回答</td><td>1文目で実数（46件中8件）を提示</td><td>冒頭2文で主質問に直答</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>CTA配置</td><td class="num">3箇所</td><td>構成設計どおり・除外しても記事が完結</td><td><span class="pill pass">OK</span></td></tr>
+      <tr><td>H2画像</td><td class="num">4点（数値の本文整合を検査済み）</td><td>図中数値と本文の一致</td><td><span class="pill pass">OK</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="footnote">※ 文字数の超過は、独自集計表4点とFAQ5問を掲載した結果によるもので、内容の水増しによるものではありません。短縮する場合は掲載する集計表かFAQの本数を減らす編集判断が必要です。</p>
+
+  <h2><span class="no">8</span>納品物・検証ソース一覧</h2>
+  <p class="lede">本レポートの根拠となる検証ログはすべてファイルで保全しており、ご要望に応じて提供可能です。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>区分</th><th>ファイル</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>記事本体</td><td><code>記事_改善版/01_オルビスユードット毛穴目立つ.md</code></td><td>WordPress入稿用の完成稿（Gutenberg CTAブロック込み）</td></tr>
+      <tr><td>画像</td><td><code>記事_改善版/H2画像/</code>・<code>記事_改善版/公式画像/</code></td><td>H2図解4点（生成プロンプト付）＋公式画像2点</td></tr>
+      <tr><td>検証ログ</td><td><code>チェック結果/01_オルビスユードット毛穴目立つ_step4結果.md</code></td><td>全工程の詳細チェック結果</td></tr>
+      <tr><td>広告規定</td><td><code>チェック結果/広告規定チェック_01_オルビスユードット毛穴目立つ.md</code><br><a href="https://shun-toda.github.io/html-publish/2026/08/orbis-udot-pore-ad-compliance-284.html" target="_blank" rel="noopener">→ ブラウザ閲覧用の判定一覧（全284項目）</a></td><td>284項目の全行判定表</td></tr>
+      <tr><td>再監査</td><td><code>チェック結果/再監査_広告規定_01_オルビスユードット毛穴目立つ.md</code></td><td>第三者独立監査による244項目の再監査報告</td></tr>
+      <tr><td>確認依頼</td><td><code>_オルビス確認依頼_01_オルビスユードット毛穴目立つ.md</code></td><td>第6章の確認事項をまとめた依頼パッケージ（分類結果一覧・スクリーンショット付）</td></tr>
+      <tr><td>機械検証</td><td><code>_verify/01_オルビスユードット毛穴目立つ/</code></td><td>薬機法・AI文体・構成契約・出典横読み等の機械判定JSON一式</td></tr>
+    </tbody>
+  </table></div>
+  <p class="footnote">※ 本チェックは公開前の検証であり、適法性を保証するものではありません。薬機法対象商材のため、公開前に貴社の薬事ご担当・法務部門での最終確認をお願いいたします。</p>
+
+  <footer>YOUFIRST｜SEO記事品質検証レポート｜検証実施 2026-08-06（初回）/ 2026-08-14（改稿版で全面再検証）/ 2026-08-16（最終）</footer>
+</div>
